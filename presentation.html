@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Agentic Software Factory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            400: '#818cf8', // Indigo
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            cyan: '#22d3ee'
+                        },
+                        dark: {
+                            bg: '#0B0F19',
+                            card: '#111827',
+                            border: '#1F2937'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
+        
+        body { background-color: #0B0F19; color: #e2e8f0; }
+        
+        /* Custom scrollbar for a polished feel */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B0F19; }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4B5563; }
+        
+        /* Subtle glow effects */
+        .glow-border { position: relative; }
+        .glow-border::before {
+            content: ""; position: absolute; inset: -1px; border-radius: inherit;
+            background: linear-gradient(to right, #6366f1, #22d3ee);
+            z-index: -1; opacity: 0; transition: opacity 0.3s ease;
+        }
+        .glow-border:hover::before { opacity: 1; }
+    </style>
+</head>
+<body class="antialiased font-sans selection:bg-brand-500 selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-dark-bg/80 backdrop-blur-md border-b border-dark-border">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
+            <div class="font-extrabold text-xl tracking-tighter flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-brand-cyan flex items-center justify-center text-white">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                <span>Agentic<span class="text-brand-400">Factory</span></span>
+            </div>
+            <div class="space-x-4 sm:space-x-8 text-sm font-medium text-slate-400">
+                <a href="#toolchain" class="hover:text-white transition-colors">Ecosystem</a>
+                <a href="#phases" class="hover:text-white transition-colors">The Phases</a>
+                <a href="#workflow" class="hover:text-white transition-colors">Workflow</a>
+                <a href="#benefits" class="hover:text-white transition-colors">Benefits</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Slide 1: Hero Section -->
+    <header class="pt-40 pb-20 px-6 max-w-5xl mx-auto text-center relative">
+        <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-brand-500/20 blur-[120px] rounded-full pointer-events-none"></div>
+        
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-sm font-medium mb-8">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
+            </span>
+            The New Standard of Development
+        </div>
+        
+        <h1 class="text-5xl sm:text-7xl font-extrabold text-white mb-6 leading-[1.1] tracking-tight">
+            Beyond Generation: <br>
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-400 to-brand-cyan">The Plan-First Agentic Workflow</span>
+        </h1>
+        
+        <p class="text-xl sm:text-2xl text-slate-400 mb-10 max-w-3xl mx-auto font-light leading-relaxed">
+            A deterministic, multi-agent system for enterprise-grade web applications.
+        </p>
+        
+        <div class="p-6 bg-dark-card border border-dark-border rounded-2xl max-w-4xl mx-auto shadow-2xl">
+            <p class="text-slate-300 text-lg">
+                <strong>Core Message:</strong> We don't just "prompt" code. We orchestrate a specialized squad of AI agents that follow strict engineering protocols, ensuring that the <strong>Plan is Law</strong>.
+            </p>
+        </div>
+    </header>
+
+    <!-- Slide 2: The Integrated Toolchain -->
+    <section id="toolchain" class="py-24 bg-slate-900/50 border-y border-dark-border">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Seamless Ecosystem Integration</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">A hub-and-spoke architecture with your Workflow at the center.</p>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Jira -->
+                <div class="bg-dark-card p-8 rounded-2xl border border-dark-border hover:border-blue-500/50 transition-colors group">
+                    <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6 text-blue-400 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M11.53 2c0 2.4 1.97 4.35 4.35 4.35h3.52V2.83c0-.46-.37-.83-.83-.83h-7.04zm4.35 5.42c-2.98 0-5.43 2.4-5.43 5.38v3.52h3.52c2.98 0 5.43-2.4 5.43-5.38v-3.52h-3.52zm-9.78 5.38c0-2.98 2.4-5.38 5.38-5.38V3.9c0-2.98-2.4-5.38-5.38-5.38H2.58c-2.98 0-5.38 2.4-5.38 5.38v3.52h3.52c2.98 0 5.38-2.4 5.38-5.38z" transform="translate(1.42 2)"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Jira <span class="text-slate-500 font-normal text-sm block">The Brain</span></h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Requirement ingestion, acceptance criteria, and ticket tracking via MCP tools.</p>
+                </div>
+
+                <!-- Figma -->
+                <div class="bg-dark-card p-8 rounded-2xl border border-dark-border hover:border-pink-500/50 transition-colors group">
+                    <div class="w-12 h-12 bg-pink-500/10 rounded-xl flex items-center justify-center mb-6 text-pink-400 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8 12.5a3.5 3.5 0 100-7h3.5v7H8zm7-7a3.5 3.5 0 100 7h-3.5v-7H15zm-3.5 10.5a3.5 3.5 0 11-7 0 3.5 3.5 0 017 0zm3.5-3.5a3.5 3.5 0 110 7 3.5 3.5 0 01-3.5 3.5v-7h3.5z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Figma <span class="text-slate-500 font-normal text-sm block">The Eye</span></h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Pixel-perfect design extraction, token identification, and layout specs.</p>
+                </div>
+
+                <!-- Cursor -->
+                <div class="bg-dark-card p-8 rounded-2xl border border-dark-border hover:border-slate-300/50 transition-colors group">
+                    <div class="w-12 h-12 bg-slate-100/10 rounded-xl flex items-center justify-center mb-6 text-slate-300 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M4 6h16v12H4z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Cursor <span class="text-slate-500 font-normal text-sm block">The Factory</span></h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">The environment where specialized <code>.mdc</code> agents execute the work.</p>
+                </div>
+
+                <!-- Next.js -->
+                <div class="bg-dark-card p-8 rounded-2xl border border-dark-border hover:border-white/50 transition-colors group">
+                    <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6 text-white group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M14.4 20.2L9.6 4H7.2l4.8 16.2h2.4zm-6.8-2.6L2.4 12l5.2-5.6V4.2L0 12l7.6 8.2v-2.6zm8.8 0v2.6L24 12l-7.6-8.2v2.6l5.2 5.6-5.2 5.6z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Next.js <span class="text-slate-500 font-normal text-sm block">The Product</span></h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">High-performance, server-first, type-safe web applications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 3-8: The Phases -->
+    <section id="phases" class="py-24 max-w-5xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">The Assembly Line</h2>
+            <p class="text-slate-400 max-w-2xl mx-auto">Step-by-step execution by specialized agents.</p>
+        </div>
+
+        <div class="space-y-8">
+            <!-- Slide 3: Architect -->
+            <div class="glow-border bg-dark-card p-8 rounded-2xl border border-dark-border flex flex-col md:flex-row gap-8 items-start">
+                <div class="md:w-1/3">
+                    <div class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-2">Phase 1</div>
+                    <h3 class="text-2xl font-bold text-white mb-1">Strategic Planning</h3>
+                    <div class="inline-block px-2 py-1 bg-slate-800 rounded text-xs text-slate-300 font-mono border border-slate-700 mt-2">[ARCHITECT]</div>
+                </div>
+                <div class="md:w-2/3 space-y-4">
+                    <p class="text-slate-300"><strong>Persona:</strong> Lead System Architect (<code class="text-sm text-brand-cyan">architect.mdc</code>)</p>
+                    <div class="grid sm:grid-cols-2 gap-4 text-sm">
+                        <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                            <span class="text-slate-500 block mb-1">Input</span>
+                            <span class="text-slate-200">Jira Ticket ID + Project Context</span>
+                        </div>
+                        <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                            <span class="text-slate-500 block mb-1">Action</span>
+                            <span class="text-slate-200">Analyzes requirements, maps foundation</span>
+                        </div>
+                    </div>
+                    <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800 text-sm">
+                        <span class="text-slate-500 block mb-2">Output: docs/plans/[TICKET_ID].md containing:</span>
+                        <ul class="list-disc list-inside text-slate-300 space-y-1">
+                            <li><strong>Architecture Trees:</strong> Directory structure for the feature.</li>
+                            <li><strong>Data-Flow Diagrams:</strong> How data moves from API to UI.</li>
+                            <li><strong>State Management Strategy:</strong> Identifying Server vs. Client state.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: Atomic Design -->
+            <div class="glow-border bg-dark-card p-8 rounded-2xl border border-dark-border flex flex-col md:flex-row gap-8 items-start">
+                <div class="md:w-1/3">
+                    <div class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-2">Phase 2</div>
+                    <h3 class="text-2xl font-bold text-white mb-1">Design Fidelity</h3>
+                    <div class="inline-block px-2 py-1 bg-slate-800 rounded text-xs text-slate-300 font-mono border border-slate-700 mt-2">[ATOMIC_DESIGN_SYSTEM]</div>
+                </div>
+                <div class="md:w-2/3 space-y-4">
+                    <p class="text-slate-300"><strong>Persona:</strong> Design System Lead (<code class="text-sm text-brand-cyan">atomic-design-system.mdc</code>)</p>
+                    <ul class="space-y-2 text-sm text-slate-300">
+                        <li><span class="text-slate-500 w-20 inline-block">Input:</span> Figma URL + Architect’s Plan.</li>
+                        <li><span class="text-slate-500 w-20 inline-block">Process:</span> Performs a "Grep Audit" of codebase to prevent duplication.</li>
+                        <li><span class="text-slate-500 w-20 inline-block">Ruleset:</span> Enforces Atomic Design (Atoms → Molecules → Organisms).</li>
+                        <li><span class="text-slate-500 w-20 align-top inline-block">Output:</span> <span class="inline-block w-[calc(100%-6rem)]">UI Specification added to Plan Artifact, including exact Tailwind tokens and Props APIs.</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Slide 5: The Safety Gate -->
+            <div class="relative overflow-hidden bg-orange-950/20 p-8 rounded-2xl border-2 border-orange-500/30 flex flex-col items-center text-center">
+                <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgc3Ryb2tlPSIjZmY4YTAwIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMCAwaDQwdjQwSDB6Ii8+PC9nPjwvc3ZnPg==')] opacity-20"></div>
+                <div class="relative z-10 w-full max-w-3xl">
+                    <div class="w-12 h-12 bg-orange-500/20 rounded-full flex items-center justify-center text-orange-400 mx-auto mb-4 border border-orange-500/30">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-orange-400 mb-2">The Critical Safety Gate (Human-in-the-Loop)</h3>
+                    <p class="text-white font-medium mb-6">Zero-Risk Execution: The AI is physically barred from writing code until a human approves the Plan Artifact.</p>
+                    
+                    <div class="grid sm:grid-cols-3 gap-4 text-left text-sm">
+                        <div class="bg-black/40 p-4 rounded-lg border border-orange-500/20">
+                            <span class="text-orange-300/70 block mb-1 font-mono text-xs">STEP 1</span>
+                            <span class="text-slate-200">Developer reviews docs/plans/[TICKET_ID].md</span>
+                        </div>
+                        <div class="bg-black/40 p-4 rounded-lg border border-green-500/30">
+                            <span class="text-green-400/70 block mb-1 font-mono text-xs">SCENARIO A</span>
+                            <span class="text-slate-200">Approved. Proceed to implementation.</span>
+                        </div>
+                        <div class="bg-black/40 p-4 rounded-lg border border-yellow-500/30">
+                            <span class="text-yellow-400/70 block mb-1 font-mono text-xs">SCENARIO B</span>
+                            <span class="text-slate-200">Revision requested. Agents regenerate plan.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: Web Builder -->
+            <div class="glow-border bg-dark-card p-8 rounded-2xl border border-dark-border flex flex-col md:flex-row gap-8 items-start">
+                <div class="md:w-1/3">
+                    <div class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-2">Phase 3</div>
+                    <h3 class="text-2xl font-bold text-white mb-1">Engineered Implementation</h3>
+                    <div class="inline-block px-2 py-1 bg-slate-800 rounded text-xs text-slate-300 font-mono border border-slate-700 mt-2">[WEB]</div>
+                </div>
+                <div class="md:w-2/3 space-y-4">
+                    <p class="text-slate-300"><strong>Persona:</strong> Senior Frontend Engineer (<code class="text-sm text-brand-cyan">web.mdc</code>)</p>
+                    <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800 text-sm">
+                        <span class="text-slate-500 block mb-2">Input: The Approved Plan + Internal Skills Library</span>
+                        <div class="space-y-3 mt-3">
+                            <div class="border-l-2 border-brand-500 pl-3">
+                                <strong class="text-white block font-mono text-xs">api-call.md</strong>
+                                <span class="text-slate-400">Enforces Axios singletons and safeRequest patterns.</span>
+                            </div>
+                            <div class="border-l-2 border-brand-cyan pl-3">
+                                <strong class="text-white block font-mono text-xs">state-management.md</strong>
+                                <span class="text-slate-400">Enforces TanStack Query for APIs and Zustand for UI state.</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="text-sm text-green-400 bg-green-400/10 px-3 py-2 rounded inline-block border border-green-400/20">
+                        <strong>Output:</strong> Type-safe Next.js code that matches the plan 1:1.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Slide 7 & 8: QA & Security Grid -->
+            <div class="grid md:grid-cols-2 gap-8">
+                <!-- Code Review -->
+                <div class="glow-border bg-dark-card p-8 rounded-2xl border border-dark-border">
+                    <div class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-2">Phase 4</div>
+                    <h3 class="text-xl font-bold text-white mb-1">Automated QA</h3>
+                    <div class="inline-block px-2 py-1 bg-slate-800 rounded text-xs text-slate-300 font-mono border border-slate-700 mt-2 mb-4">[CODE_REVIEW]</div>
+                    
+                    <p class="text-slate-300 text-sm mb-4"><strong>Persona:</strong> Lead Code Reviewer (<code class="text-brand-cyan">reviewer.mdc</code>)</p>
+                    <ul class="space-y-2 text-sm text-slate-300 mb-4">
+                        <li><span class="text-slate-500 font-medium">Input:</span> Source Code + Original Plan</li>
+                        <li><span class="text-slate-500 font-medium">Process:</span> "Audit Mode" scan. It does not change code; it identifies deviations.</li>
+                    </ul>
+                    <div class="bg-slate-900 p-3 rounded border border-slate-800 text-xs font-mono text-red-400 space-y-2">
+                        <p>> "Line 24 in UserCard.tsx violates the Atomic Design rule for Organisms."</p>
+                        <p>> "Data contract in api/user.ts does not match the Architect's JSON spec."</p>
+                    </div>
+                </div>
+
+                <!-- Security -->
+                <div class="glow-border bg-dark-card p-8 rounded-2xl border border-dark-border">
+                    <div class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-2">Phase 5</div>
+                    <h3 class="text-xl font-bold text-white mb-1">Security Hardening</h3>
+                    <div class="inline-block px-2 py-1 bg-slate-800 rounded text-xs text-slate-300 font-mono border border-slate-700 mt-2 mb-4">[SECURITY]</div>
+                    
+                    <p class="text-slate-300 text-sm mb-4"><strong>Persona:</strong> Security Auditor</p>
+                    <p class="text-sm text-slate-300 mb-2"><strong>Task:</strong> Final scan of the <code>web/</code> directory focusing on:</p>
+                    <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                        <li><strong class="text-slate-200">XSS/CSRF Prevention:</strong> Validating input handling.</li>
+                        <li><strong class="text-slate-200">Server Action Security:</strong> Ensuring proper auth checks.</li>
+                        <li><strong class="text-slate-200">Secrets Check:</strong> Verifying no env vars leak to client.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Workflow / Mermaid Diagram -->
+    <section id="workflow" class="py-24 bg-slate-900 border-y border-dark-border">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-white mb-8 text-center">The Developer-in-the-Loop Process</h2>
+            <div class="bg-dark-card p-8 rounded-2xl border border-dark-border overflow-x-auto shadow-2xl">
+                <div class="mermaid flex justify-center">
+                    sequenceDiagram
+                        autonumber
+                        participant UI as Jira/Figma
+                        participant Dev as Lead Developer
+                        participant Plan as docs/plans/[TICKET].md
+                        participant Agents as AI Squad (Cursor)
+
+                        UI->>Dev: Provide Requirements & UI
+                        Dev->>Agents: Trigger [ARCHITECT] & [ATOMIC_DESIGN]
+                        Agents->>Plan: Generate Blueprint & Tokens
+                        
+                        rect rgb(60, 20, 0)
+                        Note right of Dev: THE HUMAN CHECKPOINT
+                        Dev->>Plan: Reviews & Approves Architecture
+                        end
+                        
+                        Dev->>Agents: Trigger [WEB]
+                        Agents->>Plan: Write Code & Add "Review Notes"
+                        Dev->>Agents: Trigger [CODE_REVIEW] & [SECURITY]
+                        Agents-->>Dev: Line-by-Line Audit Report
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 9: The Asynchronous Handoff -->
+    <section class="py-24 max-w-5xl mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">How Agents Collaborate</h2>
+            <p class="text-xl text-slate-400 max-w-2xl mx-auto">The "Shared Whiteboard" Concept (The Intelligence Loop)</p>
+        </div>
+
+        <div class="bg-dark-card border border-dark-border rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-2xl">
+            <div class="md:w-1/2 p-8 border-b md:border-b-0 md:border-r border-dark-border flex flex-col justify-center bg-slate-900/50">
+                <ol class="space-y-6 relative border-l border-slate-700 ml-3">
+                    <li class="pl-6 relative">
+                        <div class="absolute w-3 h-3 bg-brand-500 rounded-full -left-[6.5px] top-1.5 shadow-[0_0_10px_#6366f1]"></div>
+                        <p class="text-slate-300">The Builder (<code>[WEB]</code>) identifies high-risk areas during coding.</p>
+                    </li>
+                    <li class="pl-6 relative">
+                        <div class="absolute w-3 h-3 bg-brand-cyan rounded-full -left-[6.5px] top-1.5 shadow-[0_0_10px_#22d3ee]"></div>
+                        <p class="text-slate-300">The Builder writes specific instructions in <strong>"Section 5: Review"</strong> of the Plan MD.</p>
+                    </li>
+                    <li class="pl-6 relative">
+                        <div class="absolute w-3 h-3 bg-green-500 rounded-full -left-[6.5px] top-1.5 shadow-[0_0_10px_#22c55e]"></div>
+                        <p class="text-slate-300">The Reviewer (<code>[CODE_REVIEW]</code>) reads those specific notes to focus the audit.</p>
+                    </li>
+                </ol>
+                <div class="mt-8 p-4 bg-brand-500/10 border border-brand-500/20 rounded-lg">
+                    <p class="text-brand-400 font-medium text-sm"><strong>Benefit:</strong> Seamless transition of context from creation to verification.</p>
+                </div>
+            </div>
+            <div class="md:w-1/2 bg-[#0d1117] p-6 font-mono text-sm">
+                <div class="flex gap-2 mb-4 border-b border-slate-800 pb-2">
+                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    <span class="ml-4 text-xs text-slate-500">docs/plans/PROJ-123.md</span>
+                </div>
+                <div class="text-slate-300 space-y-2">
+                    <p class="text-slate-500">... previous architectural notes ...</p>
+                    <br>
+                    <p class="text-brand-400 font-bold">## Section 5. Review (`[CODE_REVIEW]`)</p>
+                    <p class="text-slate-400">Notes from [WEB] agent to Reviewer:</p>
+                    <br>
+                    <p>- <span class="text-red-400">CRITICAL:</span> Check `src/app/api/auth/route.ts` line 42 for session handling logic.</p>
+                    <p>- Ensure Zustand global state correctly wipes `userToken` on logout according to `state-management.md`.</p>
+                    <p>- Verify that the `PrimaryButton` Organism spacing matches the 16px Figma token.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 10: Client Benefits -->
+    <section id="benefits" class="py-24 bg-slate-900 border-t border-dark-border">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-12">Summary of Client Benefits</h2>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+                <div class="p-6 bg-dark-card border border-dark-border rounded-2xl hover:-translate-y-1 transition-transform">
+                    <div class="text-3xl mb-4">🎯</div>
+                    <h4 class="text-lg font-bold text-white mb-2">Pixel-Perfect Accuracy</h4>
+                    <p class="text-sm text-slate-400">Figma is the source of truth, not a suggestion. Extracted tokens guarantee UI fidelity.</p>
+                </div>
+                <div class="p-6 bg-dark-card border border-dark-border rounded-2xl hover:-translate-y-1 transition-transform">
+                    <div class="text-3xl mb-4">⚙️</div>
+                    <h4 class="text-lg font-bold text-white mb-2">Technical Integrity</h4>
+                    <p class="text-sm text-slate-400">Standards in <code>api-call.md</code> and <code>state-management.md</code> are completely non-negotiable.</p>
+                </div>
+                <div class="p-6 bg-dark-card border border-dark-border rounded-2xl hover:-translate-y-1 transition-transform">
+                    <div class="text-3xl mb-4">📄</div>
+                    <h4 class="text-lg font-bold text-white mb-2">Full Traceability</h4>
+                    <p class="text-sm text-slate-400">Every single line of code is directly linked to a Jira Ticket and an Architectural Plan.</p>
+                </div>
+                <div class="p-6 bg-dark-card border border-dark-border rounded-2xl hover:-translate-y-1 transition-transform">
+                    <div class="text-3xl mb-4">📈</div>
+                    <h4 class="text-lg font-bold text-white mb-2">Scalability</h4>
+                    <p class="text-sm text-slate-400">The Atomic Design system ensures the codebase grows systematically without becoming "spaghetti."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-dark-bg border-t border-dark-border text-center text-slate-500 text-sm">
+        <p>Built for precision, security, and perfectly planned software.</p>
+    </footer>
+
+    <!-- Initialize Mermaid -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'dark',
+            themeVariables: {
+                fontFamily: 'Inter, sans-serif',
+                primaryColor: '#1e293b', 
+                primaryTextColor: '#e2e8f0', 
+                primaryBorderColor: '#334155', 
+                lineColor: '#6366f1',
+                secondaryColor: '#111827',
+                tertiaryColor: '#0f172a'
+            } 
+        });
+    </script>
+</body>
+</html>
