@@ -1,0 +1,1241 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Agentic Software Factory</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            400: '#818cf8', // Indigo
+                            500: '#6366f1',
+                            600: '#4f46e5',
+                            cyan: '#22d3ee'
+                        },
+                        dark: {
+                            bg: '#0B0F19',
+                            card: '#111827',
+                            border: '#1F2937'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'system-ui', 'sans-serif'],
+                        mono: ['Fira Code', 'monospace']
+                    },
+                    animation: {
+                        'fade-in-down': 'fadeInDown 0.4s ease-out forwards',
+                        'modal-enter': 'modalEnter 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards'
+                    },
+                    keyframes: {
+                        fadeInDown: {
+                            '0%': { opacity: '0', transform: 'translateY(-10px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
+                        },
+                        modalEnter: {
+                            '0%': { opacity: '0', transform: 'scale(0.95)' },
+                            '100%': { opacity: '1', transform: 'scale(1)' }
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500&display=swap');
+        
+        body { background-color: #0B0F19; color: #e2e8f0; }
+        
+        /* Custom scrollbar for a polished feel */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #0B0F19; }
+        ::-webkit-scrollbar-thumb { background: #374151; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #4B5563; }
+        
+        /* Subtle glow effects */
+        .glow-border { position: relative; }
+        .glow-border::before {
+            content: ""; position: absolute; inset: -1px; border-radius: inherit;
+            background: linear-gradient(to right, #6366f1, #22d3ee);
+            z-index: -1; opacity: 0; transition: opacity 0.3s ease;
+        }
+        .glow-border:hover::before { opacity: 1; }
+
+        /* Custom Tag Button */
+        .tag-btn {
+            background-color: #171E2E;
+            border: 1px solid #2A374A;
+            color: #9CA3AF;
+            transition: all 0.2s ease-in-out;
+        }
+        .tag-btn:hover {
+            background-color: #1F2937;
+            border-color: #4F46E5;
+            color: #E2E8F0;
+        }
+        .tag-btn.active {
+            background-color: #1E1B4B;
+            border-color: #6366F1;
+            color: #818CF8;
+        }
+    </style>
+</head>
+<body class="antialiased font-sans selection:bg-brand-500 selection:text-white">
+
+    <!-- Navigation -->
+    <nav class="fixed w-full z-50 bg-dark-bg/80 backdrop-blur-md border-b border-dark-border">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col sm:flex-row justify-between items-center gap-4 sm:gap-0">
+            <div class="font-extrabold text-xl tracking-tighter flex items-center gap-2">
+                <div class="w-8 h-8 rounded-lg bg-gradient-to-br from-brand-500 to-brand-cyan flex items-center justify-center text-white">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </div>
+                <span>Agentic AI <span class="text-brand-400">Workflow</span></span>
+            </div>
+            <div class="space-x-4 sm:space-x-8 text-sm font-medium text-slate-400">
+                <a href="#toolchain" class="hover:text-white transition-colors">Ecosystem</a>
+                <a href="#phases" class="hover:text-white transition-colors">The Phases</a>
+                <a href="#workflow" class="hover:text-white transition-colors">Workflow</a>
+                <a href="#benefits" class="hover:text-white transition-colors">Benefits</a>
+                <a href="#agent-in-action" class="hover:text-white transition-colors">Agent in Action</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Slide 1: Hero Section -->
+    <header class="pt-40 pb-20 px-6 max-w-5xl mx-auto text-center relative">
+        <div class="absolute top-20 left-1/2 -translate-x-1/2 w-[600px] h-[400px] bg-brand-500/20 blur-[120px] rounded-full pointer-events-none"></div>
+        
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-brand-400 text-sm font-medium mb-8">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-brand-500"></span>
+            </span>
+            The New Standard of Development
+        </div>
+        
+        <div class="w-[70%] mx-auto mt-8 mb-6">
+            <img src="agentic-AI-workflow..png" alt="Agentic AI Workflow" class="w-full h-auto object-cover">
+        </div>
+        
+        <p class="text-xl sm:text-2xl text-slate-400 mb-10 max-w-3xl mx-auto font-light leading-relaxed">
+            A deterministic, multi-agent system for enterprise-grade web applications.
+        </p>
+        
+        <div class="p-6 bg-dark-card border border-dark-border rounded-2xl max-w-4xl mx-auto shadow-2xl">
+            <p class="text-slate-300 text-lg">
+                <strong>Core Message:</strong> We don't just "prompt" code. We orchestrate a specialized squad of AI agents that follow strict engineering protocols, ensuring that the <strong>Plan is Law</strong>.
+            </p>
+        </div>
+    </header>
+
+    <!-- Slide 2: The Integrated Toolchain -->
+    <section id="toolchain" class="py-24 bg-slate-900/50 border-y border-dark-border">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Seamless Ecosystem Integration</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">A hub-and-spoke architecture with your Workflow at the center.</p>
+            </div>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                  <!-- Cursor (Interactive) -->
+                  <div onclick="openCursorModal()" class="bg-dark-card p-8 rounded-2xl border border-dark-border hover:border-slate-300/50 hover:shadow-[0_0_20px_rgba(255,255,255,0.05)] transition-all group cursor-pointer relative">
+                    <div class="absolute top-4 right-4 text-slate-600 group-hover:text-slate-400 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+                    </div>
+                    <div class="w-12 h-12 bg-slate-100/10 rounded-xl flex items-center justify-center mb-6 text-slate-300 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M4 6h16v12H4z"></path></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Cursor <span class="text-slate-500 font-normal text-sm block">The Factory</span></h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Click to view agent modes, models, and orchestration configurations.</p>
+                </div>
+                
+                <!-- Jira (Interactive) -->
+                <div onclick="openJiraModal()" class="bg-dark-card p-8 rounded-2xl border border-dark-border hover:border-blue-500/50 hover:shadow-[0_0_20px_rgba(59,130,246,0.1)] transition-all group cursor-pointer relative">
+                    <div class="absolute top-4 right-4 text-slate-600 group-hover:text-blue-400/50 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+                    </div>
+                    <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6 text-blue-400 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M11.53 2c0 2.4 1.97 4.35 4.35 4.35h3.52V2.83c0-.46-.37-.83-.83-.83h-7.04zm4.35 5.42c-2.98 0-5.43 2.4-5.43 5.38v3.52h3.52c2.98 0 5.43-2.4 5.43-5.38v-3.52h-3.52zm-9.78 5.38c0-2.98 2.4-5.38 5.38-5.38V3.9c0-2.98-2.4-5.38-5.38-5.38H2.58c-2.98 0-5.38 2.4-5.38 5.38v3.52h3.52c2.98 0 5.38-2.4 5.38-5.38z" transform="translate(1.42 2)"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Jira <span class="text-slate-500 font-normal text-sm block">The Brain</span></h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Requirement ingestion, acceptance criteria, and ticket tracking via MCP tools.</p>
+                </div>
+
+                <!-- Figma (Interactive) -->
+                <div onclick="openFigmaModal()" class="bg-dark-card p-8 rounded-2xl border border-dark-border hover:border-pink-500/50 hover:shadow-[0_0_20px_rgba(236,72,153,0.1)] transition-all group cursor-pointer relative">
+                    <div class="absolute top-4 right-4 text-slate-600 group-hover:text-pink-400/50 transition-colors">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4"></path></svg>
+                    </div>
+                    <div class="w-12 h-12 bg-pink-500/10 rounded-xl flex items-center justify-center mb-6 text-pink-400 group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M8 12.5a3.5 3.5 0 100-7h3.5v7H8zm7-7a3.5 3.5 0 100 7h-3.5v-7H15zm-3.5 10.5a3.5 3.5 0 11-7 0 3.5 3.5 0 017 0zm3.5-3.5a3.5 3.5 0 110 7 3.5 3.5 0 01-3.5 3.5v-7h3.5z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">Figma <span class="text-slate-500 font-normal text-sm block">The Eye</span></h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">Pixel-perfect design extraction, token identification, and layout specs.</p>
+                </div>
+
+                <!-- Next.js -->
+                <div class="bg-dark-card p-8 rounded-2xl border border-dark-border hover:border-white/50 transition-colors group">
+                    <div class="w-12 h-12 bg-white/10 rounded-xl flex items-center justify-center mb-6 text-white group-hover:scale-110 transition-transform">
+                        <svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M14.4 20.2L9.6 4H7.2l4.8 16.2h2.4zm-6.8-2.6L2.4 12l5.2-5.6V4.2L0 12l7.6 8.2v-2.6zm8.8 0v2.6L24 12l-7.6-8.2v2.6l5.2 5.6-5.2 5.6z"/></svg>
+                    </div>
+                    <h3 class="text-xl font-bold text-white mb-2">FE Applications <span class="text-slate-500 font-normal text-sm block">The Product</span></h3>
+                    <p class="text-slate-400 text-sm leading-relaxed">High-performance, type-safe web and mobile applications.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 3-8: The Phases -->
+    <section id="phases" class="py-24 max-w-5xl mx-auto px-6">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">The Assembly Line</h2>
+            <p class="text-slate-400 max-w-2xl mx-auto">Step-by-step execution by specialized agents.</p>
+        </div>
+
+        <div class="space-y-8">
+            <!-- The Orchestrator -->
+            <div class="glow-border bg-dark-card p-8 rounded-2xl border border-brand-500/40 flex flex-col gap-6 relative overflow-hidden shadow-[0_0_30px_-10px_rgba(99,102,241,0.2)]">
+                <div class="relative z-10">
+                    <div class="flex items-center gap-3 mb-4">
+                        <div class="w-10 h-10 rounded-lg bg-brand-500/20 flex items-center justify-center text-brand-400 border border-brand-500/30">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
+                        </div>
+                        <h3 class="text-2xl font-bold text-white">The Agent</h3>
+                        <div class="inline-block px-2 py-1 bg-brand-500/10 rounded text-xs text-brand-300 font-mono border border-brand-500/30">AGENTS.md</div>
+                    </div>
+                    <p class="text-slate-300 text-sm mb-6 leading-relaxed"><strong>Main responsibility:</strong> Router and global rules: when to create project, when to use which agent, and what is never allowed.</p>
+
+                    <div class="grid md:grid-cols-2 gap-6 text-sm">
+                        <!-- Left Column -->
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="text-brand-cyan font-semibold mb-3 text-xs uppercase tracking-wider">Key "Functions"</h4>
+                                <ul class="space-y-3 text-slate-400">
+                                    <li class="flex gap-2"><span class="text-slate-200 font-medium whitespace-nowrap">Scenario 1:</span> <span>Project init → scaffold only, no real UI.</span></li>
+                                    <li class="flex gap-2"><span class="text-slate-200 font-medium whitespace-nowrap">Scenario 2:</span> <span>Route by tag/intent → Architect / Web / Atomic Design.</span></li>
+                                    <li class="flex gap-2"><span class="text-slate-200 font-medium whitespace-nowrap">Cross-functional:</span> <span>Code review (<code class="text-xs text-brand-400 font-mono">[VERIFY_CODE]</code> → reviewer), Security (audit <code>web/</code>).</span></li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h4 class="text-brand-cyan font-semibold mb-2 text-xs uppercase tracking-wider">Critical Instructions</h4>
+                                <p class="text-slate-400 leading-relaxed bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                    Plan artifact is law; order is <strong class="text-white">Architect → Atomic Design → approval → Web</strong>; Figma fidelity; multi-ticket rules (parent epic plan holds shared order).
+                                </p>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="space-y-4">
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Input</span>
+                                <span class="text-slate-300">User message, active directory, tags (<code class="text-xs text-brand-400 font-mono">[ARCHITECT]</code>, <code class="text-xs text-brand-400 font-mono">[WEB]</code>, <code class="text-xs text-brand-400 font-mono">[ATOMIC_DESIGN_SYSTEM]</code>, etc.).</span>
+                            </div>
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Output</span>
+                                <span class="text-slate-300">Which agent file to adopt and high-level instructions (e.g. "update plan at docs/plans/...").</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                    <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Dependencies</span>
+                                    <span class="text-slate-300">None (root)</span>
+                                </div>
+                                <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                    <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Consumers</span>
+                                    <span class="text-slate-300">Cursor / AI when selecting behavior; all agents are constrained by these rules.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3: Architect -->
+            <div class="glow-border bg-dark-card p-8 rounded-2xl border border-dark-border flex flex-col gap-6 transition-all">
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="md:w-1/3">
+                        <div class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-2">Phase 1</div>
+                        <h3 class="text-2xl font-bold text-white mb-1">Strategic Planning</h3>
+                        <button onclick="toggleDetails('details-arch', 'icon-arch', this)" class="tag-btn flex items-center gap-2 px-3 py-1.5 rounded-md font-mono text-sm shadow-sm cursor-pointer mt-2">
+                            [ARCHITECT]
+                            <svg id="icon-arch" class="w-4 h-4 transition-transform duration-300 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </button>
+
+                        <!-- Architecture Phase Image Hover Component -->
+                        <div class="mt-8 relative group inline-block w-full">
+                            <span class="text-xs text-slate-500 mb-3 block font-medium uppercase tracking-wider">Phase Workflow</span>
+                            <img src="architecture-phase.png" alt="Architecture Phase" class="w-full rounded-lg border border-slate-700 cursor-zoom-in hover:border-brand-500 transition-all shadow-md">
+                            
+                            <!-- Fullscreen Hover Overlay -->
+                            <div class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 pointer-events-none">
+                                <img src="architecture-phase.png" alt="Architecture Phase Expanded" class="w-[70vw] max-h-[85vh] object-contain rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-slate-700 transform scale-95 group-hover:scale-100 transition-transform duration-300">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 space-y-4">
+                        <p class="text-slate-300"><strong>Persona:</strong> Lead System Architect (<code class="text-sm text-brand-cyan">architect.mdc</code>)</p>
+                        <div class="grid sm:grid-cols-2 gap-4 text-sm">
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                <span class="text-slate-500 block mb-1">Input</span>
+                                <span class="text-slate-200">Jira Ticket ID + Project Context</span>
+                            </div>
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                <span class="text-slate-500 block mb-1">Action</span>
+                                <span class="text-slate-200">Analyzes requirements, maps foundation</span>
+                            </div>
+                        </div>
+                        <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800 text-sm">
+                            <span class="text-slate-500 block mb-2">Output: docs/plans/[TICKET_ID].md containing:</span>
+                            <ul class="list-disc list-inside text-slate-300 space-y-1">
+                                <li><strong>Architecture Trees:</strong> Directory structure for the feature.</li>
+                                <li><strong>Data-Flow Diagrams:</strong> How data moves from API to UI.</li>
+                                <li><strong>State Management Strategy:</strong> Identifying Server vs. Client state.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hidden Details Panel -->
+                <div id="details-arch" class="hidden border-t border-slate-700/50 pt-6 mt-2">
+                    <p class="text-slate-300 text-sm mb-6 leading-relaxed"><strong>Main responsibility:</strong> Produce architecture spec and type contracts only; no feature or UI implementation.</p>
+
+                    <div class="grid md:grid-cols-2 gap-6 text-sm">
+                        <!-- Left Column -->
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="text-brand-cyan font-semibold mb-3 text-xs uppercase tracking-wider">Key Phases</h4>
+                                <ul class="space-y-3 text-slate-400">
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">1.</span> <span>Pre-flight (target <code class="text-xs font-mono text-slate-300 bg-slate-800 px-1 py-0.5 rounded">docs/plans/web/[TICKET_ID].md</code>)</span></li>
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">2.</span> <span>Discovery (Jira MCP, skills)</span></li>
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">3.</span> <span>Artifact (ASCII tree, data flow, routing, state diagram, contracts)</span></li>
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">4.</span> <span>Approval</span></li>
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">5.</span> <span>Execution (scaffold + <code class="text-xs font-mono text-slate-300 bg-slate-800 px-1 py-0.5 rounded">web/src/types/*.ts</code>, update <code class="text-xs font-mono text-slate-300 bg-slate-800 px-1 py-0.5 rounded">ARCHITECT_TRACKING.md</code>)</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="space-y-4">
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Input</span>
+                                <span class="text-slate-300">Ticket ID, Jira issue body, <code class="text-xs font-mono text-brand-400">.cursor/skills/*.md</code>.</span>
+                            </div>
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Output</span>
+                                <span class="text-slate-300"><code class="text-xs font-mono text-brand-400">docs/plans/web/[TICKET_ID].md</code> (with required sections), <code class="text-xs font-mono text-brand-400">web/src/types/*.ts</code>, and top-of-file entry in <code class="text-xs font-mono text-brand-400">docs/tracking/ARCHITECT_TRACKING.md</code>.</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                    <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Dependencies</span>
+                                    <span class="text-slate-300">Jira MCP, state-management and api-call skills.</span>
+                                </div>
+                                <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                    <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Consumers</span>
+                                    <span class="text-slate-300">Web and Atomic Design agents (they read the plan); Reviewer (compares code to plan).</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4: Atomic Design -->
+            <div class="glow-border bg-dark-card p-8 rounded-2xl border border-dark-border flex flex-col gap-6 transition-all">
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="md:w-1/3">
+                        <div class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-2">Phase 2</div>
+                        <h3 class="text-2xl font-bold text-white mb-1">Design Fidelity</h3>
+                        <button onclick="toggleDetails('details-ads', 'icon-ads', this)" class="tag-btn flex items-center gap-2 px-3 py-1.5 rounded-md font-mono text-sm shadow-sm cursor-pointer mt-2">
+                            [ATOMIC_DESIGN_SYSTEM]
+                            <svg id="icon-ads" class="w-4 h-4 transition-transform duration-300 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </button>
+
+                        <!-- Atomic Design System Phase Image (same as Architect Phase) -->
+                        <div class="mt-8 relative group inline-block w-full">
+                            <span class="text-xs text-slate-500 mb-3 block font-medium uppercase tracking-wider">Phase Workflow</span>
+                            <img src="atomic-design-system.png" alt="Atomic Design System Phase" class="w-full rounded-lg border border-slate-700 cursor-zoom-in hover:border-brand-500 transition-all shadow-md">
+                            
+                            <!-- Fullscreen Hover Overlay -->
+                            <div class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 pointer-events-none">
+                                <img src="atomic-design-system.png" alt="Atomic Design System Phase Expanded" class="w-[70vw] max-h-[85vh] object-contain rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-slate-700 transform scale-95 group-hover:scale-100 transition-transform duration-300">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 space-y-4">
+                        <p class="text-slate-300"><strong>Persona:</strong> Design System Lead (<code class="text-sm text-brand-cyan">atomic-design-system.mdc</code>)</p>
+                        <ul class="space-y-2 text-sm text-slate-300">
+                            <li><span class="text-slate-500 w-20 inline-block">Input:</span> Figma URL + Architect’s Plan.</li>
+                            <li><span class="text-slate-500 w-20 inline-block">Process:</span> Performs a "Grep Audit" of codebase to prevent duplication.</li>
+                            <li><span class="text-slate-500 w-20 inline-block">Ruleset:</span> Enforces Atomic Design (Atoms → Molecules → Organisms).</li>
+                            <li><span class="text-slate-500 w-20 align-top inline-block">Output:</span> <span class="inline-block w-[calc(100%-6rem)]">UI Specification added to Plan Artifact, including exact Tailwind tokens and Props APIs.</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Hidden Details Panel -->
+                <div id="details-ads" class="hidden border-t border-slate-700/50 pt-6 mt-2">
+                    <p class="text-slate-300 text-sm mb-6 leading-relaxed"><strong>Main responsibility:</strong> Turn Figma + Jira into a UI spec (tokens, props, atomic level) then implement components; no invention of design.</p>
+
+                    <div class="grid md:grid-cols-2 gap-6 text-sm">
+                        <!-- Left Column -->
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="text-brand-cyan font-semibold mb-3 text-xs uppercase tracking-wider">Key Phases</h4>
+                                <ul class="space-y-3 text-slate-400">
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">1.</span> <span>Discovery (Jira + Figma, grep for existing components)</span></li>
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">2.</span> <span>UI artifact in <code class="text-xs font-mono text-slate-300 bg-slate-800 px-1 py-0.5 rounded">docs/plans/[TICKET_ID].md</code> (metadata, tokens, component API, gaps)</span></li>
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">3.</span> <span>Approval</span></li>
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">4.</span> <span>Implementation and fidelity check</span></li>
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">5.</span> <span><code class="text-xs font-mono text-slate-300 bg-slate-800 px-1 py-0.5 rounded">ATOMIC_DESIGN_SYSTEM_TRACKING.md</code></span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="space-y-4">
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Input</span>
+                                <span class="text-slate-300">Ticket ID, Figma link, existing <code class="text-xs font-mono text-brand-400">web/src/components/</code>.</span>
+                            </div>
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Output</span>
+                                <span class="text-slate-300">Plan file, components in <code class="text-xs font-mono text-brand-400">atoms|molecules|organisms|templates</code>, assets under <code class="text-xs font-mono text-brand-400">web/public/</code>, tracking entry.</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                    <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Dependencies</span>
+                                    <span class="text-slate-300">Figma MCP, Jira (for link and context).</span>
+                                </div>
+                                <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                    <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Consumers</span>
+                                    <span class="text-slate-300">Web agent (reuses components); Reviewer (checks placement and tokens).</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 5: The Safety Gate -->
+            <div class="relative overflow-hidden bg-orange-950/20 p-8 rounded-2xl border-2 border-orange-500/30 flex flex-col items-center text-center">
+                <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgc3Ryb2tlPSIjZmY4YTAwIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCIgb3BhY2l0eT0iMC4xIj48cGF0aCBkPSJNMCAwaDQwdjQwSDB6Ii8+PC9nPjwvc3ZnPg==')] opacity-20"></div>
+                <div class="relative z-10 w-full max-w-3xl">
+                    <div class="w-12 h-12 bg-orange-500/20 rounded-full flex items-center justify-center text-orange-400 mx-auto mb-4 border border-orange-500/30">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path></svg>
+                    </div>
+                    <h3 class="text-2xl font-bold text-orange-400 mb-2">The Critical Safety Gate (Human-in-the-Loop)</h3>
+                    <p class="text-white font-medium mb-6">Zero-Risk Execution: The AI is physically barred from writing code until a human approves the Plan Artifact.</p>
+                    
+                    <div class="grid sm:grid-cols-3 gap-4 text-left text-sm">
+                        <div class="bg-black/40 p-4 rounded-lg border border-orange-500/20">
+                            <span class="text-orange-300/70 block mb-1 font-mono text-xs">STEP 1</span>
+                            <span class="text-slate-200">Developer reviews docs/plans/[TICKET_ID].md</span>
+                        </div>
+                        <div class="bg-black/40 p-4 rounded-lg border border-green-500/30">
+                            <span class="text-green-400/70 block mb-1 font-mono text-xs">SCENARIO A</span>
+                            <span class="text-slate-200">Approved. Proceed to implementation.</span>
+                        </div>
+                        <div class="bg-black/40 p-4 rounded-lg border border-yellow-500/30">
+                            <span class="text-yellow-400/70 block mb-1 font-mono text-xs">SCENARIO B</span>
+                            <span class="text-slate-200">Revision requested. Agents regenerate plan.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 6: Web Builder -->
+            <div class="glow-border bg-dark-card p-8 rounded-2xl border border-dark-border flex flex-col gap-6 transition-all">
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="md:w-1/3">
+                        <div class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-2">Phase 3</div>
+                        <h3 class="text-2xl font-bold text-white mb-1">Engineered Implementation</h3>
+                        <button onclick="toggleDetails('details-web', 'icon-web', this)" class="tag-btn flex items-center gap-2 px-3 py-1.5 rounded-md font-mono text-sm shadow-sm cursor-pointer mt-2">
+                            [WEB]
+                            <svg id="icon-web" class="w-4 h-4 transition-transform duration-300 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </button>
+
+                        <!-- Web Phase Image (same as Architect Phase) -->
+                        <div class="mt-8 relative group inline-block w-full">
+                            <span class="text-xs text-slate-500 mb-3 block font-medium uppercase tracking-wider">Phase Workflow</span>
+                            <img src="web-phase.png" alt="Web Phase" class="w-full rounded-lg border border-slate-700 cursor-zoom-in hover:border-brand-500 transition-all shadow-md">
+                            
+                            <!-- Fullscreen Hover Overlay -->
+                            <div class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 pointer-events-none">
+                                <img src="web-phase.png" alt="Web Phase Expanded" class="w-[70vw] max-h-[85vh] object-contain rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-slate-700 transform scale-95 group-hover:scale-100 transition-transform duration-300">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 space-y-4">
+                        <p class="text-slate-300"><strong>Persona:</strong> Senior Frontend Engineer (<code class="text-sm text-brand-cyan">web.mdc</code>)</p>
+                        <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800 text-sm">
+                            <span class="text-slate-500 block mb-2">Input: The Approved Plan + Internal Skills Library</span>
+                            <div class="space-y-3 mt-3">
+                                <div class="border-l-2 border-brand-500 pl-3">
+                                    <strong class="text-white block font-mono text-xs">api-call.md</strong>
+                                    <span class="text-slate-400">Enforces Axios singletons and safeRequest patterns.</span>
+                                </div>
+                                <div class="border-l-2 border-brand-cyan pl-3">
+                                    <strong class="text-white block font-mono text-xs">state-management.md</strong>
+                                    <span class="text-slate-400">Enforces TanStack Query for APIs and Zustand for UI state.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="text-sm text-green-400 bg-green-400/10 px-3 py-2 rounded inline-block border border-green-400/20">
+                            <strong>Output:</strong> Type-safe Next.js code that matches the plan 1:1.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Hidden Details Panel -->
+                <div id="details-web" class="hidden border-t border-slate-700/50 pt-6 mt-2">
+                    <p class="text-slate-300 text-sm mb-6 leading-relaxed"><strong>Main responsibility:</strong> Implement the web app from plans: RSC/client strategy, data fetching, routes, and Atomic Design components; then update task/epic and tracking.</p>
+
+                    <div class="grid md:grid-cols-2 gap-6 text-sm">
+                        <!-- Left Column -->
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="text-brand-cyan font-semibold mb-3 text-xs uppercase tracking-wider">Key Phases</h4>
+                                <ul class="space-y-3 text-slate-400">
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">1.</span> <span>Discovery (Jira/Figma MCP, codebase, skills)</span></li>
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">2.</span> <span>Plan artifact or update in <code class="text-xs font-mono text-slate-300 bg-slate-800 px-1 py-0.5 rounded">docs/plans/web/[TICKET_ID].md</code> (metadata, strategy, steps, security, review)</span></li>
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">3.</span> <span>Approval</span></li>
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">4.</span> <span>Execution (types → logic → UI)</span></li>
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">5.</span> <span>Task completion and epic sync + <code class="text-xs font-mono text-slate-300 bg-slate-800 px-1 py-0.5 rounded">WEB_TRACKING.md</code></span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="space-y-4">
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Input</span>
+                                <span class="text-slate-300">Ticket ID, Jira/Figma, existing plan, <code class="text-xs font-mono text-brand-400">package.json</code>, <code class="text-xs font-mono text-brand-400">.cursor/skills/*.md</code>, existing components.</span>
+                            </div>
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Output</span>
+                                <span class="text-slate-300">Plan file, code under <code class="text-xs font-mono text-brand-400">web/src/</code>, status badge and checklist update in parent epic plan, entry in <code class="text-xs font-mono text-brand-400">docs/tracking/WEB_TRACKING.md</code>.</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                    <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Dependencies</span>
+                                    <span class="text-slate-300">Jira MCP, Figma MCP, plan artifact, skills.</span>
+                                </div>
+                                <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                    <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Consumers</span>
+                                    <span class="text-slate-300">Reviewer (reviews implemented code); future work (builds on existing components and routes).</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 7: Automated QA -->
+            <div class="glow-border bg-dark-card p-8 rounded-2xl border border-dark-border flex flex-col gap-6 transition-all">
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="md:w-1/3">
+                        <div class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-2">Phase 4</div>
+                        <h3 class="text-2xl font-bold text-white mb-1">Code Verifier</h3>
+                        <button onclick="toggleDetails('details-review', 'icon-review', this)" class="tag-btn flex items-center gap-2 px-3 py-1.5 rounded-md font-mono text-sm shadow-sm cursor-pointer mt-2">
+                            [VERIFY_CODE]
+                            <svg id="icon-review" class="w-4 h-4 transition-transform duration-300 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </button>
+
+                        <!-- Review Phase Image (same as Architect Phase) -->
+                        <div class="mt-8 relative group inline-block w-full">
+                            <span class="text-xs text-slate-500 mb-3 block font-medium uppercase tracking-wider">Phase Workflow</span>
+                            <img src="review-phase.png" alt="Review Phase" class="w-full rounded-lg border border-slate-700 cursor-zoom-in hover:border-brand-500 transition-all shadow-md">
+                            
+                            <!-- Fullscreen Hover Overlay -->
+                            <div class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 pointer-events-none">
+                                <img src="review-phase.png" alt="Review Phase Expanded" class="w-[70vw] max-h-[85vh] object-contain rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-slate-700 transform scale-95 group-hover:scale-100 transition-transform duration-300">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 space-y-4">
+                        <p class="text-slate-300"><strong>Persona:</strong> Lead Code Verifier (<code class="text-sm text-brand-cyan">verify-code.mdc</code>)</p>
+                        <ul class="space-y-2 text-sm text-slate-300">
+                            <li><span class="text-slate-500 w-20 inline-block">Input:</span> Source Code + Original Plan</li>
+                            <li><span class="text-slate-500 w-20 inline-block align-top">Process:</span> <span class="inline-block w-[calc(100%-6rem)]">"Audit Mode" scan. It does not change code; it identifies deviations.</span></li>
+                        </ul>
+                        <div class="bg-slate-900 p-3 rounded border border-slate-800 text-xs font-mono text-red-400 space-y-2 mt-2">
+                            <p>> "Line 24 in UserCard.tsx violates the Atomic Design rule for Organisms."</p>
+                            <p>> "Data contract in api/user.ts does not match the Architect's JSON spec."</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hidden Details Panel -->
+                <div id="details-review" class="hidden border-t border-slate-700/50 pt-6 mt-2">
+                    <p class="text-slate-300 text-sm mb-6 leading-relaxed"><strong>Main responsibility:</strong> Audit code against plan and project rules; no fixes, only feedback with file/line and rule reference.</p>
+
+                    <div class="grid md:grid-cols-2 gap-6 text-sm">
+                        <!-- Left Column -->
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="text-brand-cyan font-semibold mb-3 text-xs uppercase tracking-wider">Key Phases</h4>
+                                <ul class="space-y-3 text-slate-400">
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">1.</span> <span>Discovery (ticket ID, plan artifact, skills)</span></li>
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">2.</span> <span>Spec verification (contracts, folders, state/API usage)</span></li>
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">3.</span> <span>Technical checklist (artifact, state, errors, performance, security, naming)</span></li>
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">4.</span> <span>Output template</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="space-y-4">
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Input</span>
+                                <span class="text-slate-300">Ticket ID, <code class="text-xs font-mono text-brand-400">docs/plans/[TICKET_ID].md</code>, changed code, skills.</span>
+                            </div>
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Output</span>
+                                <span class="text-slate-300">Summary + list of feedback items (file, line, comment, rule/spec violated).</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                    <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Dependencies</span>
+                                    <span class="text-slate-300">Plan artifact, state-management and api-call skills.</span>
+                                </div>
+                                <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                    <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Consumers</span>
+                                    <span class="text-slate-300">Developer (human or agent) who amends code based on review.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 8: Security Hardening -->
+            <div class="glow-border bg-dark-card p-8 rounded-2xl border border-dark-border flex flex-col gap-6 transition-all">
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="md:w-1/3">
+                        <div class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-2">Phase 5</div>
+                        <h3 class="text-2xl font-bold text-white mb-1">Security Hardening</h3>
+                        <button onclick="toggleDetails('details-security', 'icon-security', this)" class="tag-btn flex items-center gap-2 px-3 py-1.5 rounded-md font-mono text-sm shadow-sm cursor-pointer mt-2">
+                            [SECURITY]
+                            <svg id="icon-security" class="w-4 h-4 transition-transform duration-300 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </button>
+                    </div>
+                    <div class="md:w-2/3 space-y-4">
+                        <p class="text-slate-300 text-sm"><strong>Persona:</strong> Security Auditor</p>
+                        <p class="text-sm text-slate-300 mb-2"><strong>Task:</strong> Final scan of the <code>web/</code> directory focusing on:</p>
+                        <ul class="space-y-2 text-sm text-slate-400 list-disc list-inside bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                            <li><strong class="text-slate-200">XSS/CSRF Prevention:</strong> Validating input handling.</li>
+                            <li><strong class="text-slate-200">Server Action Security:</strong> Ensuring proper auth checks.</li>
+                            <li><strong class="text-slate-200">Secrets Check:</strong> Verifying no env vars leak to client.</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Hidden Details Panel -->
+                <div id="details-security" class="hidden border-t border-slate-700/50 pt-6 mt-2">
+                    <p class="text-slate-300 text-sm mb-6 leading-relaxed"><strong>Main responsibility:</strong> Audit <code class="text-xs font-mono text-slate-300 bg-slate-800 px-1 py-0.5 rounded">web/</code> for XSS, CSRF, and Next.js Server Actions security issues.</p>
+
+                    <div class="grid md:grid-cols-2 gap-6 text-sm">
+                        <!-- Left Column -->
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="text-brand-cyan font-semibold mb-3 text-xs uppercase tracking-wider">Key Phases</h4>
+                                <ul class="space-y-3 text-slate-400">
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">1.</span> <span>Discovery</span></li>
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">2.</span> <span>Threat review</span></li>
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">3.</span> <span>Findings</span></li>
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">4.</span> <span>Recommendations</span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Right Column -->
+                        <div class="space-y-4">
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Input</span>
+                                <span class="text-slate-300"><code class="text-xs font-mono text-brand-400">web/</code> codebase, env config, security requirements.</span>
+                            </div>
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Output</span>
+                                <span class="text-slate-300">Security findings and recommendations (no code fixes).</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                    <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Dependencies</span>
+                                    <span class="text-slate-300">Next.js/React security practices, project validation/API patterns.</span>
+                                </div>
+                                <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                    <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Consumers</span>
+                                    <span class="text-slate-300">Web developers (apply fixes), reviewers (enforce standards).</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Final Phase: PR Review Agent -->
+            <div class="glow-border bg-dark-card p-8 rounded-2xl border border-dark-border flex flex-col gap-6 transition-all">
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="md:w-1/3">
+                        <div class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-2">Final Phase</div>
+                        <h3 class="text-2xl font-bold text-white mb-1">PR Review Agent</h3>
+                        <button onclick="toggleDetails('details-pr-review', 'icon-pr-review', this)" class="tag-btn flex items-center gap-2 px-3 py-1.5 rounded-md font-mono text-sm shadow-sm cursor-pointer mt-2">
+                            [PR_REVIEW]
+                            <svg id="icon-pr-review" class="w-4 h-4 transition-transform duration-300 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </button>
+
+                        <!-- PR Review Agent Image -->
+                        <div class="mt-8 relative group inline-block w-full">
+                            <span class="text-xs text-slate-500 mb-3 block font-medium uppercase tracking-wider">Phase Workflow</span>
+                            <img src="PR-review-agent.png" alt="PR Review Agent" class="w-full rounded-lg border border-slate-700 cursor-zoom-in hover:border-brand-500 transition-all shadow-md">
+                            
+                            <!-- Fullscreen Hover Overlay -->
+                            <div class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 pointer-events-none">
+                                <img src="PR-review-agent.png" alt="PR Review Agent Expanded" class="w-[70vw] max-h-[85vh] object-contain rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-slate-700 transform scale-95 group-hover:scale-100 transition-transform duration-300">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 space-y-4">
+                        <p class="text-slate-300"><strong>Persona:</strong> Pull Request Reviewer</p>
+                        <p class="text-sm text-slate-300"><strong>Task:</strong> Review pull requests in the GitHub repository.</p>
+                        <p class="text-sm text-slate-300 mb-4"><strong>Process:</strong> A GitHub Actions workflow triggers on pull request events (open or push). The agent invokes Gemini to analyze code diffs against the plan artifact, design tokens, and project conventions—then posts actionable feedback as inline review comments directly on the PR.</p>
+                        <div class="bg-slate-900 p-3 rounded border border-slate-800 text-xs font-mono space-y-3 mt-2">
+                            <p class="text-slate-400">/** Green checkmark for valid email state (AW-4) */</p>
+                            <p class="text-slate-300">export const CheckmarkIcon = (&#123; className = 'size-6 text-[#22c55e]' &#125;: &#123; className?: string &#125;) =&gt; (</p>
+                            <div class="border-l-2 border-slate-600 pl-4 mt-4 py-2 bg-slate-800/50 rounded-r">
+                                <p class="text-slate-500 text-[10px] mb-1">@github-actions · 1 hour ago</p>
+                                <p class="text-amber-400/90">It's generally a best practice to avoid hardcoding hex colors directly in component definitions. Consider defining this color (#22c55e) as a named color in your Tailwind CSS configuration or as a CSS variable to improve maintainability and consistency with your design system.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Visual Workflow / Mermaid Diagram -->
+    <section id="workflow" class="py-24 bg-slate-900 border-y border-dark-border">
+        <div class="max-w-5xl mx-auto px-6">
+            <h2 class="text-3xl font-bold text-white mb-8 text-center">The Developer-in-the-Loop Process</h2>
+            <div class="bg-dark-card p-8 rounded-2xl border border-dark-border overflow-x-auto shadow-2xl">
+                <div class="mermaid flex justify-center">
+                    sequenceDiagram
+                        autonumber
+                        participant UI as Jira/Figma
+                        participant Dev as Lead Developer
+                        participant Plan as docs/plans/[TICKET].md
+                        participant Agents as AI Squad (Cursor)
+
+                        UI->>Dev: Provide Requirements & UI
+                        Dev->>Agents: Trigger [ARCHITECT] & [ATOMIC_DESIGN]
+                        Agents->>Plan: Generate Blueprint & Tokens
+                        
+                        rect rgb(60, 20, 0)
+                        Note right of Dev: THE HUMAN CHECKPOINT
+                        Dev->>Plan: Reviews & Approves Architecture
+                        end
+                        
+                        Dev->>Agents: Trigger [WEB]
+                        Agents->>Plan: Write Code & Add "Review Notes"
+                        Dev->>Agents: Trigger [VERIFY_CODE] & [SECURITY]
+                        Agents-->>Dev: Line-by-Line Audit Report
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 9: The Asynchronous Handoff -->
+    <section class="py-24 max-w-5xl mx-auto px-6">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">How Agents Collaborate</h2>
+            <p class="text-xl text-slate-400 max-w-2xl mx-auto">The "Shared Whiteboard" Concept (The Intelligence Loop)</p>
+        </div>
+
+        <div class="bg-dark-card border border-dark-border rounded-2xl overflow-hidden flex flex-col md:flex-row shadow-2xl">
+            <div class="md:w-1/2 p-8 border-b md:border-b-0 md:border-r border-dark-border flex flex-col justify-center bg-slate-900/50">
+                <ol class="space-y-6 relative border-l border-slate-700 ml-3">
+                    <li class="pl-6 relative">
+                        <div class="absolute w-3 h-3 bg-brand-500 rounded-full -left-[6.5px] top-1.5 shadow-[0_0_10px_#6366f1]"></div>
+                        <p class="text-slate-300">The Builder (<code>[WEB]</code>) identifies high-risk areas during coding.</p>
+                    </li>
+                    <li class="pl-6 relative">
+                        <div class="absolute w-3 h-3 bg-brand-cyan rounded-full -left-[6.5px] top-1.5 shadow-[0_0_10px_#22d3ee]"></div>
+                        <p class="text-slate-300">The Builder writes specific instructions in <strong>"Section 5: Review"</strong> of the Plan MD.</p>
+                    </li>
+                    <li class="pl-6 relative">
+                        <div class="absolute w-3 h-3 bg-green-500 rounded-full -left-[6.5px] top-1.5 shadow-[0_0_10px_#22c55e]"></div>
+                        <p class="text-slate-300">The Reviewer (<code>[VERIFY_CODE]</code>) reads those specific notes to focus the audit.</p>
+                    </li>
+                </ol>
+                <div class="mt-8 p-4 bg-brand-500/10 border border-brand-500/20 rounded-lg">
+                    <p class="text-brand-400 font-medium text-sm"><strong>Benefit:</strong> Seamless transition of context from creation to verification.</p>
+                </div>
+            </div>
+            <div class="md:w-1/2 bg-[#0d1117] p-6 font-mono text-sm">
+                <div class="flex gap-2 mb-4 border-b border-slate-800 pb-2">
+                    <div class="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div class="w-3 h-3 rounded-full bg-green-500"></div>
+                    <span class="ml-4 text-xs text-slate-500">docs/plans/PROJ-123.md</span>
+                </div>
+                <div class="text-slate-300 space-y-2">
+                    <p class="text-slate-500">... previous architectural notes ...</p>
+                    <br>
+                    <p class="text-brand-400 font-bold">## Section 5. Review (`[VERIFY_CODE]`)</p>
+                    <p class="text-slate-400">Notes from [WEB] agent to Reviewer:</p>
+                    <br>
+                    <p>- <span class="text-red-400">CRITICAL:</span> Check `src/app/api/auth/route.ts` line 42 for session handling logic.</p>
+                    <p>- Ensure Zustand global state correctly wipes `userToken` on logout according to `state-management.md`.</p>
+                    <p>- Verify that the `PrimaryButton` Organism spacing matches the 16px Figma token.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Slide 10: Client Benefits -->
+    <section id="benefits" class="py-24 bg-slate-900 border-t border-dark-border">
+        <div class="max-w-6xl mx-auto px-6 text-center">
+            <h2 class="text-3xl sm:text-4xl font-bold text-white mb-12">Summary of Client Benefits</h2>
+            
+            <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+                <div class="p-6 bg-dark-card border border-dark-border rounded-2xl hover:-translate-y-1 transition-transform">
+                    <div class="text-3xl mb-4">🎯</div>
+                    <h4 class="text-lg font-bold text-white mb-2">Pixel-Perfect Accuracy</h4>
+                    <p class="text-sm text-slate-400">Figma is the source of truth, not a suggestion. Extracted tokens guarantee UI fidelity.</p>
+                </div>
+                <div class="p-6 bg-dark-card border border-dark-border rounded-2xl hover:-translate-y-1 transition-transform">
+                    <div class="text-3xl mb-4">⚙️</div>
+                    <h4 class="text-lg font-bold text-white mb-2">Technical Integrity</h4>
+                    <p class="text-sm text-slate-400">Standards in <code>api-call.md</code> and <code>state-management.md</code> are completely non-negotiable.</p>
+                </div>
+                <div class="p-6 bg-dark-card border border-dark-border rounded-2xl hover:-translate-y-1 transition-transform">
+                    <div class="text-3xl mb-4">📄</div>
+                    <h4 class="text-lg font-bold text-white mb-2">Full Traceability</h4>
+                    <p class="text-sm text-slate-400">Every single line of code is directly linked to a Jira Ticket and an Architectural Plan.</p>
+                </div>
+                <div class="p-6 bg-dark-card border border-dark-border rounded-2xl hover:-translate-y-1 transition-transform">
+                    <div class="text-3xl mb-4">📈</div>
+                    <h4 class="text-lg font-bold text-white mb-2">Scalability</h4>
+                    <p class="text-sm text-slate-400">The Atomic Design system ensures the codebase grows systematically without becoming "spaghetti."</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agent in Action -->
+    <section id="agent-in-action" class="py-24 bg-slate-900 border-t border-dark-border">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-bold text-white mb-4">Agent in Action</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">Watch the agentic workflow from start to finish.</p>
+            </div>
+            <div class="bg-dark-card border border-dark-border rounded-2xl overflow-hidden shadow-2xl max-w-5xl mx-auto">
+                <video class="w-full" controls playsinline preload="auto">
+                    <source src="ai-demo.mp4" type="video/mp4">
+                    <p class="p-6 text-slate-400 text-center">Your browser does not support the video tag. <a href="ai-demo.mp4" class="text-brand-400 hover:underline">Download the video</a>.</p>
+                </video>
+            </div>
+            <p class="text-center mt-8">
+                <a href="https://frontend-agentic-coding.vercel.app/" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-brand-500/20 border border-brand-500/40 text-brand-400 font-semibold hover:bg-brand-500/30 hover:border-brand-500/60 transition-all">
+                    Check out the live app
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                </a>
+            </p>
+        </div>
+    </section>
+
+    <!-- Cursor Dialog Modal -->
+    <div id="cursor-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm cursor-pointer" onclick="closeCursorModal()"></div>
+        
+        <!-- Modal Content -->
+        <div class="relative bg-dark-card border border-dark-border rounded-2xl shadow-2xl w-11/12 max-w-4xl max-h-[90vh] overflow-y-auto z-10 p-6 sm:p-8 animate-modal-enter">
+            <!-- Close Button -->
+            <button onclick="closeCursorModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors bg-slate-800/50 hover:bg-slate-700/50 rounded-full p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <h2 class="text-3xl font-bold text-white mb-8 flex items-center gap-3">
+                <div class="w-12 h-12 bg-slate-100/10 rounded-xl flex items-center justify-center text-slate-300">
+                    <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9l3 3-3 3m5 0h3M4 6h16v12H4z"></path></svg>
+                </div>
+                Cursor: The Factory Settings
+            </h2>
+
+            <div class="flex flex-col gap-8">
+                <!-- Section 1: Modes & Models -->
+                <div class="bg-slate-900/50 p-6 rounded-xl border border-slate-800 flex flex-col gap-6">
+                    <h3 class="text-xl font-bold text-brand-400 border-b border-slate-700 pb-2">1. Modes & Models</h3>
+                    
+                    <img src="agents-mode.png" alt="Modes and Models Selector" class="rounded-lg border border-slate-700 w-full shadow-lg">
+
+                    <div class="space-y-6">
+                        <div>
+                            <h4 class="text-white font-semibold mb-3 text-sm uppercase tracking-wider">Modes</h4>
+                            <ul class="space-y-3 text-sm text-slate-400">
+                                <li><strong class="text-slate-200 block mb-0.5">Auto</strong> Cursor picks the model for you.</li>
+                                <li><strong class="text-slate-200 block mb-0.5">MAX Mode</strong> Uses the most capable models (slower, higher cost).</li>
+                                <li><strong class="text-slate-200 block mb-0.5">Use Multiple Models</strong> Allows using several models in the same task.</li>
+                            </ul>
+                        </div>
+                        
+                        <div>
+                            <h4 class="text-white font-semibold mb-3 text-sm uppercase tracking-wider">Models</h4>
+                            <ul class="space-y-3 text-sm text-slate-400">
+                                <li class="flex justify-between items-center"><strong class="text-slate-200">Composer 1.5</strong> <span class="text-xs text-brand-400 bg-brand-500/10 px-2 py-0.5 rounded border border-brand-500/20">Default</span></li>
+                                <li class="text-xs">Default coding assistant.</li>
+                                
+                                <li class="mt-2"><strong class="text-slate-200">GPT-5.3 Codex</strong> — Tuned for code.</li>
+                                <li><strong class="text-slate-200">GPT-5.4</strong> — General-purpose GPT.</li>
+                                <li><strong class="text-slate-200">Sonnet 4.6</strong> — Balanced Claude model.</li>
+                                <li><strong class="text-slate-200">Opus 4.6</strong> — Top-tier Claude model.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 mt-auto border-t border-slate-700">
+                        <button class="text-sm font-medium text-brand-cyan hover:text-white transition-colors flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path></svg>
+                            Add Models
+                        </button>
+                        <p class="text-xs text-slate-500 mt-1">Add or manage additional models.</p>
+                    </div>
+                </div>
+
+                <!-- Section 2: Task Focus -->
+                <div class="bg-slate-900/50 p-6 rounded-xl border border-slate-800 flex flex-col gap-6">
+                    <h3 class="text-xl font-bold text-brand-400 border-b border-slate-700 pb-2">2. Task Focus</h3>
+                    
+                    <img src="agents-select.png" alt="Task Focus Options" class="rounded-lg border border-slate-700 w-full shadow-lg">
+
+                    <div class="space-y-4">
+                        <ul class="space-y-3 text-sm text-slate-400">
+                            <li class="bg-slate-800/40 p-4 rounded-lg border border-slate-700/50 hover:border-brand-500/30 transition-colors">
+                                <strong class="text-white flex items-center gap-2 mb-1.5 text-base">
+                                    <span class="text-brand-400 font-mono text-xs border border-brand-500/20 bg-brand-500/10 px-2 py-0.5 rounded">Agent</span>
+                                </strong>
+                                "Do it for me in my repo"
+                            </li>
+                            <li class="bg-slate-800/40 p-4 rounded-lg border border-slate-700/50 hover:border-brand-500/30 transition-colors">
+                                <strong class="text-white flex items-center gap-2 mb-1.5 text-base">
+                                    <span class="text-brand-400 font-mono text-xs border border-brand-500/20 bg-brand-500/10 px-2 py-0.5 rounded">Plan</span>
+                                </strong>
+                                "Help me design a solution first"
+                            </li>
+                            <li class="bg-slate-800/40 p-4 rounded-lg border border-slate-700/50 hover:border-brand-500/30 transition-colors">
+                                <strong class="text-white flex items-center gap-2 mb-1.5 text-base">
+                                    <span class="text-brand-400 font-mono text-xs border border-brand-500/20 bg-brand-500/10 px-2 py-0.5 rounded">Debug</span>
+                                </strong>
+                                "This is broken, find why"
+                            </li>
+                            <li class="bg-slate-800/40 p-4 rounded-lg border border-slate-700/50 hover:border-brand-500/30 transition-colors">
+                                <strong class="text-white flex items-center gap-2 mb-1.5 text-base">
+                                    <span class="text-brand-400 font-mono text-xs border border-brand-500/20 bg-brand-500/10 px-2 py-0.5 rounded">Ask</span>
+                                </strong>
+                                "Teach me / explain this"
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Section 3: Context -->
+                <div class="bg-slate-900/50 p-6 rounded-xl border border-slate-800 flex flex-col gap-6">
+                    <h3 class="text-xl font-bold text-brand-400 border-b border-slate-700 pb-2">3. Context</h3>
+                    
+                    <img src="context.png" alt="Context Options" class="rounded-lg border border-slate-700 w-full shadow-lg">
+
+                    <div class="space-y-4">
+                        <ul class="space-y-4 text-sm text-slate-400">
+                            <li>
+                                <strong class="text-slate-200 block mb-1">Local</strong>
+                                Uses only this project on your machine. Best for normal coding in this workspace.
+                            </li>
+                            <li>
+                                <strong class="text-slate-200 block mb-1">Worktree</strong>
+                                Uses a specific Git worktree (another working copy of the same repo, often on another branch). Use when you’re working with multiple worktrees.
+                            </li>
+                            <li>
+                                <strong class="text-slate-200 block mb-1">Cloud</strong>
+                                Includes remote/cloud context (e.g. Codespaces, cloud APIs, remote repos). Use when your work involves cloud environments or services.
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="mt-auto pt-4 border-t border-slate-700">
+                        <div class="bg-brand-500/10 border border-brand-500/20 text-brand-400 text-xs p-3 rounded-lg flex gap-2 items-start">
+                            <svg class="w-4 h-4 shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <span>For most local work, keep <strong class="text-brand-300">Local</strong> selected.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Jira Dialog Modal -->
+    <div id="jira-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm cursor-pointer" onclick="closeJiraModal()"></div>
+        
+        <!-- Modal Content -->
+        <div class="relative bg-dark-card border border-dark-border rounded-2xl shadow-2xl w-11/12 max-w-5xl max-h-[90vh] overflow-y-auto z-10 p-6 sm:p-8 animate-modal-enter">
+            <!-- Close Button -->
+            <button onclick="closeJiraModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors bg-slate-800/50 hover:bg-slate-700/50 rounded-full p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <h2 class="text-3xl font-bold text-white mb-8 flex items-center gap-3">
+                <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center text-blue-400">
+                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M11.53 2c0 2.4 1.97 4.35 4.35 4.35h3.52V2.83c0-.46-.37-.83-.83-.83h-7.04zm4.35 5.42c-2.98 0-5.43 2.4-5.43 5.38v3.52h3.52c2.98 0 5.43-2.4 5.43-5.38v-3.52h-3.52zm-9.78 5.38c0-2.98 2.4-5.38 5.38-5.38V3.9c0-2.98-2.4-5.38-5.38-5.38H2.58c-2.98 0-5.38 2.4-5.38 5.38v3.52h3.52c2.98 0 5.38-2.4 5.38-5.38z" transform="translate(1.42 2)"/></svg>
+                </div>
+                Cursor ↔ MCP: How Jira Tools Work
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+                
+                <!-- Left: Execution & Config Details -->
+                <div class="space-y-6">
+                    <!-- MCP Servers -->
+                    <div class="bg-slate-900/50 p-6 rounded-xl border border-slate-800">
+                        <h4 class="text-white font-semibold mb-2 text-sm uppercase tracking-wider">MCP Servers</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed">Servers (e.g. <code class="text-xs bg-blue-900/30 text-blue-300 border border-blue-500/20 px-1.5 py-0.5 rounded">mcp-atlassian</code>) expose tools to Cursor, which the AI calls via the internal <code class="text-xs font-mono text-brand-400">call_mcp_tool</code> function.</p>
+                    </div>
+
+                    <!-- Flow Timeline -->
+                    <div class="bg-slate-900/50 p-6 rounded-xl border border-slate-800">
+                        <h4 class="text-blue-400 font-semibold mb-4 text-sm uppercase tracking-wider">The Execution Flow</h4>
+                        <ol class="space-y-4 relative border-l border-slate-700 ml-2 text-sm text-slate-300">
+                            <li class="pl-5 relative">
+                                <div class="w-2.5 h-2.5 bg-slate-500 rounded-full absolute -left-[5.5px] top-1"></div>
+                                <span class="font-medium text-white">1. Request:</span> You ask for something (e.g. requirements).
+                            </li>
+                            <li class="pl-5 relative">
+                                <div class="w-2.5 h-2.5 bg-blue-500 rounded-full absolute -left-[5.5px] top-1"></div>
+                                <span class="font-medium text-white">2. Trigger:</span> AI calls the Jira MCP tool.
+                            </li>
+                            <li class="pl-5 relative">
+                                <div class="w-2.5 h-2.5 bg-blue-500 rounded-full absolute -left-[5.5px] top-1"></div>
+                                <span class="font-medium text-white">3. Execution:</span> Cursor runs the Docker server.
+                            </li>
+                            <li class="pl-5 relative">
+                                <div class="w-2.5 h-2.5 bg-blue-500 rounded-full absolute -left-[5.5px] top-1"></div>
+                                <span class="font-medium text-white">4. API Call:</span> The server talks directly to Jira.
+                            </li>
+                            <li class="pl-5 relative">
+                                <div class="w-2.5 h-2.5 bg-blue-500 rounded-full absolute -left-[5.5px] top-1"></div>
+                                <span class="font-medium text-white">5. Response:</span> The result comes back to Cursor.
+                            </li>
+                            <li class="pl-5 relative">
+                                <div class="w-2.5 h-2.5 bg-brand-400 shadow-[0_0_10px_#818cf8] rounded-full absolute -left-[5.5px] top-1"></div>
+                                <span class="font-medium text-white">6. Output:</span> AI uses the retrieved data in the reply.
+                            </li>
+                        </ol>
+                    </div>
+
+                    <!-- Rules & Docker Config -->
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="bg-slate-900/50 p-5 rounded-xl border border-slate-800">
+                            <h4 class="text-white font-semibold mb-2 text-xs uppercase tracking-wider text-slate-500">AGENTS.md</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">Before planning/coding, the orchestrator mandates the use of Jira and Figma MCP tools to fetch exact requirements and designs.</p>
+                        </div>
+                        <div class="bg-slate-900/50 p-5 rounded-xl border border-slate-800">
+                            <h4 class="text-white font-semibold mb-2 text-xs uppercase tracking-wider text-slate-500">Docker Config</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed mb-2">The Jira server runs in a container configured with:</p>
+                            <div class="flex flex-col gap-1 text-[10px] font-mono text-blue-300">
+                                <span class="bg-slate-950 px-1.5 py-0.5 rounded border border-slate-800">JIRA_URL</span>
+                                <span class="bg-slate-950 px-1.5 py-0.5 rounded border border-slate-800">JIRA_USERNAME</span>
+                                <span class="bg-slate-950 px-1.5 py-0.5 rounded border border-slate-800">JIRA_API_TOKEN</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Image View -->
+                <div class="bg-[#1e1e1e] p-3 rounded-xl border border-slate-800 shadow-xl h-full flex flex-col">
+                    <div class="text-xs font-mono text-slate-500 mb-3 px-2 flex items-center gap-2">
+                        <div class="w-2 h-2 rounded-full bg-red-500/50"></div>
+                        <div class="w-2 h-2 rounded-full bg-yellow-500/50"></div>
+                        <div class="w-2 h-2 rounded-full bg-green-500/50"></div>
+                        <span class="ml-2">mcp-atlassian tools</span>
+                    </div>
+                    <img src="Jira.png" alt="Jira MCP Tools Interface" class="rounded-lg w-full object-cover">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Figma Dialog Modal -->
+    <div id="figma-modal" class="fixed inset-0 z-[60] hidden flex items-center justify-center">
+        <!-- Backdrop -->
+        <div class="absolute inset-0 bg-black/80 backdrop-blur-sm cursor-pointer" onclick="closeFigmaModal()"></div>
+        
+        <!-- Modal Content -->
+        <div class="relative bg-dark-card border border-dark-border rounded-2xl shadow-2xl w-11/12 max-w-5xl max-h-[90vh] overflow-y-auto z-10 p-6 sm:p-8 animate-modal-enter">
+            <!-- Close Button -->
+            <button onclick="closeFigmaModal()" class="absolute top-4 right-4 text-slate-400 hover:text-white transition-colors bg-slate-800/50 hover:bg-slate-700/50 rounded-full p-2">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <h2 class="text-3xl font-bold text-white mb-8 flex items-center gap-3">
+                <div class="w-12 h-12 bg-pink-500/10 rounded-xl flex items-center justify-center text-pink-400">
+                    <svg class="w-7 h-7" fill="currentColor" viewBox="0 0 24 24"><path d="M8 12.5a3.5 3.5 0 100-7h3.5v7H8zm7-7a3.5 3.5 0 100 7h-3.5v-7H15zm-3.5 10.5a3.5 3.5 0 11-7 0 3.5 3.5 0 017 0zm3.5-3.5a3.5 3.5 0 110 7 3.5 3.5 0 01-3.5 3.5v-7h3.5z"/></svg>
+                </div>
+                How Cursor Uses MCP to Talk to Figma
+            </h2>
+
+            <div class="grid md:grid-cols-2 gap-8 items-start">
+                
+                <!-- Left: Execution & Config Details -->
+                <div class="space-y-6">
+                    <!-- MCP Servers -->
+                    <div class="bg-slate-900/50 p-6 rounded-xl border border-slate-800">
+                        <h4 class="text-white font-semibold mb-2 text-sm uppercase tracking-wider">MCP Server</h4>
+                        <p class="text-sm text-slate-400 leading-relaxed">Figma’s MCP server (e.g. <code class="text-xs bg-pink-900/30 text-pink-300 border border-pink-500/20 px-1.5 py-0.5 rounded">user-Figma</code>) exposes tools like <code class="text-xs font-mono text-brand-400">get_design_context</code>, <code class="text-xs font-mono text-brand-400">get_screenshot</code>, and <code class="text-xs font-mono text-brand-400">generate_diagram</code>, which the AI calls via <code class="text-xs font-mono text-brand-400">call_mcp_tool</code>.</p>
+                    </div>
+
+                    <!-- Flow Timeline -->
+                    <div class="bg-slate-900/50 p-6 rounded-xl border border-slate-800">
+                        <h4 class="text-pink-400 font-semibold mb-4 text-sm uppercase tracking-wider">The Execution Flow</h4>
+                        <ol class="space-y-4 relative border-l border-slate-700 ml-2 text-sm text-slate-300">
+                            <li class="pl-5 relative">
+                                <div class="w-2.5 h-2.5 bg-slate-500 rounded-full absolute -left-[5.5px] top-1"></div>
+                                <span class="font-medium text-white">1. Request:</span> You share a Figma URL or ask about a design.
+                            </li>
+                            <li class="pl-5 relative">
+                                <div class="w-2.5 h-2.5 bg-pink-500 rounded-full absolute -left-[5.5px] top-1"></div>
+                                <span class="font-medium text-white">2. Trigger:</span> AI calls a Figma MCP tool.
+                            </li>
+                            <li class="pl-5 relative">
+                                <div class="w-2.5 h-2.5 bg-pink-500 rounded-full absolute -left-[5.5px] top-1"></div>
+                                <span class="font-medium text-white">3. Execution:</span> Cursor talks to the Figma server.
+                            </li>
+                            <li class="pl-5 relative">
+                                <div class="w-2.5 h-2.5 bg-pink-500 rounded-full absolute -left-[5.5px] top-1"></div>
+                                <span class="font-medium text-white">4. Response:</span> The server returns design data or screenshots.
+                            </li>
+                            <li class="pl-5 relative">
+                                <div class="w-2.5 h-2.5 bg-brand-400 shadow-[0_0_10px_#818cf8] rounded-full absolute -left-[5.5px] top-1"></div>
+                                <span class="font-medium text-white">5. Output:</span> AI uses it to build UI or give design guidance.
+                            </li>
+                        </ol>
+                    </div>
+
+                    <!-- Rules & Resources -->
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <div class="bg-slate-900/50 p-5 rounded-xl border border-slate-800">
+                            <h4 class="text-white font-semibold mb-2 text-xs uppercase tracking-wider text-slate-500">AGENTS.md</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">Before planning or coding, the orchestrator mandates the use of Figma MCP tools to pull designs and align UI with the design system.</p>
+                        </div>
+                        <div class="bg-slate-900/50 p-5 rounded-xl border border-slate-800">
+                            <h4 class="text-white font-semibold mb-2 text-xs uppercase tracking-wider text-slate-500">Tools & Resources</h4>
+                            <p class="text-xs text-slate-400 leading-relaxed">The server offers both <strong class="text-white">tools</strong> (screenshots, context, Code Connect) and <strong class="text-white">docs</strong> (troubleshooting, prompts) that can be fetched as MCP resources.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Image View -->
+                <div class="bg-[#1e1e1e] p-3 rounded-xl border border-slate-800 shadow-xl h-full flex flex-col">
+                    <div class="text-xs font-mono text-slate-500 mb-3 px-2 flex items-center gap-2">
+                        <div class="w-2 h-2 rounded-full bg-red-500/50"></div>
+                        <div class="w-2 h-2 rounded-full bg-yellow-500/50"></div>
+                        <div class="w-2 h-2 rounded-full bg-green-500/50"></div>
+                        <span class="ml-2">user-Figma tools</span>
+                    </div>
+                    <img src="Figma.png" alt="Figma MCP Tools Interface" class="rounded-lg w-full object-cover">
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="py-8 bg-dark-bg border-t border-dark-border text-center text-slate-500 text-sm">
+        <p>Built for precision, security, and perfectly planned software.</p>
+    </footer>
+
+    <!-- Interactive Script -->
+    <script>
+        function toggleDetails(detailsId, iconId, btnElement) {
+            const details = document.getElementById(detailsId);
+            const icon = document.getElementById(iconId);
+            
+            if (details.classList.contains('hidden')) {
+                // Open panel
+                details.classList.remove('hidden');
+                details.classList.add('animate-fade-in-down');
+                icon.style.transform = 'rotate(90deg)';
+                btnElement.classList.add('active');
+            } else {
+                // Close panel
+                details.classList.add('hidden');
+                details.classList.remove('animate-fade-in-down');
+                icon.style.transform = 'rotate(0deg)';
+                btnElement.classList.remove('active');
+            }
+        }
+
+        // Modal Functions for Cursor
+        function openCursorModal() {
+            document.getElementById('cursor-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeCursorModal() {
+            document.getElementById('cursor-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Modal Functions for Jira
+        function openJiraModal() {
+            document.getElementById('jira-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeJiraModal() {
+            document.getElementById('jira-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Modal Functions for Figma
+        function openFigmaModal() {
+            document.getElementById('figma-modal').classList.remove('hidden');
+            document.body.style.overflow = 'hidden';
+        }
+        function closeFigmaModal() {
+            document.getElementById('figma-modal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Close modals on escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === "Escape") {
+                closeCursorModal();
+                closeJiraModal();
+                closeFigmaModal();
+            }
+        });
+    </script>
+
+    <!-- Initialize Mermaid -->
+    <script type="module">
+        import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+        mermaid.initialize({ 
+            startOnLoad: true, 
+            theme: 'dark',
+            themeVariables: {
+                fontFamily: 'Inter, sans-serif',
+                primaryColor: '#1e293b', 
+                primaryTextColor: '#e2e8f0', 
+                primaryBorderColor: '#334155', 
+                lineColor: '#6366f1',
+                secondaryColor: '#111827',
+                tertiaryColor: '#0f172a'
+            } 
+        });
+    </script>
+</body>
+</html>
