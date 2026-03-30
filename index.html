@@ -591,25 +591,8 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="grid sm:grid-cols-2 gap-4 text-sm">
-                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
-                                <span class="text-slate-500 block mb-1">Input</span>
-                                <span class="text-slate-200">Ticket ID, Jira &amp; Figma MCP, architecture plan (Epic ID)</span>
-                            </div>
-                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
-                                <span class="text-slate-500 block mb-1">Loop</span>
-                                <span class="text-slate-200">Developer approves plan or sends feedback; agent regenerates until approved.</span>
-                            </div>
-                        </div>
-                        <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800 text-sm">
-                            <span class="text-slate-500 block mb-2">After approval</span>
-                            <ul class="list-disc list-inside text-slate-300 space-y-1">
-                                <li><strong class="text-white">Implementation:</strong> TypeScript, screens, and native UI under <code class="text-xs font-mono text-slate-400">mobile/src/</code>, following skills above.</li>
-                                <li><strong class="text-white">Verification:</strong> Run <code class="text-xs font-mono text-brand-400">[VERIFY_CODE]</code> same ticket ID; updates the plan verification section.</li>
-                            </ul>
-                        </div>
                         <p class="text-sm text-green-400 bg-green-400/10 px-3 py-2 rounded inline-block border border-green-400/20">
-                            <strong>Output:</strong> Plan-bound React Native (or project stack) code with tracked verification.
+                            <strong>Output:</strong> React Native code that matches the plan 1:1.
                         </p>
                     </div>
                 </div>
@@ -617,6 +600,24 @@
                 <div id="details-mobile" class="hidden border-t border-slate-700/50 pt-6 mt-2">
                     <p class="text-slate-300 text-sm mb-6 leading-relaxed"><strong>Main responsibility:</strong> Produce and execute mobile plans from Jira, Figma, and the epic architecture doc; load the skills below during discovery; implement under <code class="text-xs font-mono text-brand-400">mobile/src/</code>; then run <code class="text-xs font-mono text-brand-400">[VERIFY_CODE]</code> for the same ticket.</p>
                     <p class="text-slate-400 text-sm mb-6 bg-slate-900/80 p-3 rounded-lg border border-slate-700/80"><strong class="text-slate-300">Scope rule:</strong> Run <code class="text-xs font-mono text-brand-400">[MOBILE]</code> only when delivery targets <code class="text-xs font-mono text-slate-400">mobile/</code>. For web-only scope, use Phase 3 <code class="text-xs font-mono text-brand-400">[WEB]</code> and skip this phase.</p>
+
+                    <div class="grid sm:grid-cols-2 gap-4 text-sm mb-8">
+                        <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                            <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Input</span>
+                            <span class="text-slate-200">Ticket ID, Jira &amp; Figma MCP, architecture plan (Epic ID)</span>
+                        </div>
+                        <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                            <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Loop</span>
+                            <span class="text-slate-200">Developer approves plan or sends feedback; agent regenerates until approved.</span>
+                        </div>
+                    </div>
+                    <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800 text-sm mb-8">
+                        <span class="text-slate-500 block mb-2 text-xs uppercase tracking-wider font-semibold">After approval</span>
+                        <ul class="list-disc list-inside text-slate-300 space-y-1">
+                            <li><strong class="text-white">Implementation:</strong> TypeScript, screens, and native UI under <code class="text-xs font-mono text-slate-400">mobile/src/</code>, following the skills listed in the summary above.</li>
+                            <li><strong class="text-white">Verification:</strong> Run <code class="text-xs font-mono text-brand-400">[VERIFY_CODE]</code> for the same ticket ID; updates the plan verification section.</li>
+                        </ul>
+                    </div>
 
                     <div class="grid md:grid-cols-2 gap-6 text-sm">
                         <div class="space-y-6">
