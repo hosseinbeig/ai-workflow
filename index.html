@@ -217,14 +217,14 @@
                                 <h4 class="text-brand-cyan font-semibold mb-3 text-xs uppercase tracking-wider">Key "Functions"</h4>
                                 <ul class="space-y-3 text-slate-400">
                                     <li class="flex gap-2"><span class="text-slate-200 font-medium whitespace-nowrap">Scenario 1:</span> <span>Project init → scaffold only, no real UI.</span></li>
-                                    <li class="flex gap-2"><span class="text-slate-200 font-medium whitespace-nowrap">Scenario 2:</span> <span>Route by tag/intent → Architect / Web / Atomic Design.</span></li>
+                                    <li class="flex gap-2"><span class="text-slate-200 font-medium whitespace-nowrap">Scenario 2:</span> <span>Route by tag/intent → Architect / Atomic Design; then <strong class="text-slate-300">[WEB]</strong> or <strong class="text-slate-300">[MOBILE]</strong>.</span></li>
                                     <li class="flex gap-2"><span class="text-slate-200 font-medium whitespace-nowrap">Cross-functional:</span> <span>Code review (<code class="text-xs text-brand-400 font-mono">[VERIFY_CODE]</code> → reviewer), Security (audit <code>web/</code>).</span></li>
                                 </ul>
                             </div>
                             <div>
                                 <h4 class="text-brand-cyan font-semibold mb-2 text-xs uppercase tracking-wider">Critical Instructions</h4>
                                 <p class="text-slate-400 leading-relaxed bg-slate-900/50 p-4 rounded-lg border border-slate-800">
-                                    Plan artifact is law; order is <strong class="text-white">Architect → Atomic Design → approval → Web</strong>; Figma fidelity; multi-ticket rules (parent epic plan holds shared order).
+                                    Plan artifact is law; order is <strong class="text-white">Architect → Atomic Design → approval</strong>, then <strong class="text-white">one implementation track per ticket</strong>: trigger <strong class="text-white">[WEB]</strong> for web work, <strong class="text-white">[MOBILE]</strong> for app work. Figma fidelity; multi-ticket rules (parent epic plan holds shared order).
                                 </p>
                             </div>
                         </div>
@@ -233,7 +233,7 @@
                         <div class="space-y-4">
                             <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
                                 <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Input</span>
-                                <span class="text-slate-300">User message, active directory, tags (<code class="text-xs text-brand-400 font-mono">[ARCHITECT]</code>, <code class="text-xs text-brand-400 font-mono">[WEB]</code>, <code class="text-xs text-brand-400 font-mono">[ATOMIC_DESIGN_SYSTEM]</code>, etc.).</span>
+                                <span class="text-slate-300">User message, active directory, tags (<code class="text-xs text-brand-400 font-mono">[ARCHITECT]</code>, <code class="text-xs text-brand-400 font-mono">[WEB]</code>, <code class="text-xs text-brand-400 font-mono">[MOBILE]</code>, <code class="text-xs text-brand-400 font-mono">[ATOMIC_DESIGN_SYSTEM]</code>, etc.).</span>
                             </div>
                             <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
                                 <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Output</span>
@@ -335,7 +335,7 @@
                                 </div>
                                 <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
                                     <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Consumers</span>
-                                    <span class="text-slate-300">Web and Atomic Design agents (they read the plan); Reviewer (compares code to plan).</span>
+                                    <span class="text-slate-300">Web, Mobile, and Atomic Design agents (they read the plan); Reviewer (compares code to plan).</span>
                                 </div>
                             </div>
                         </div>
@@ -412,7 +412,7 @@
                                 </div>
                                 <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
                                     <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Consumers</span>
-                                    <span class="text-slate-300">Web agent (reuses components); Reviewer (checks placement and tokens).</span>
+                                    <span class="text-slate-300">Web and Mobile agents (reuse components); Reviewer (checks placement and tokens).</span>
                                 </div>
                             </div>
                         </div>
@@ -453,6 +453,7 @@
                     <div class="md:w-1/3">
                         <div class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-2">Phase 3</div>
                         <h3 class="text-2xl font-bold text-white mb-1">Engineered Implementation</h3>
+                        <p class="text-xs text-slate-500 mt-1 leading-relaxed">Web track—use when delivery is the browser / Next.js app.</p>
                         <button onclick="toggleDetails('details-web', 'icon-web', this)" class="tag-btn flex items-center gap-2 px-3 py-1.5 rounded-md font-mono text-sm shadow-sm cursor-pointer mt-2">
                             [WEB]
                             <svg id="icon-web" class="w-4 h-4 transition-transform duration-300 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
@@ -493,6 +494,7 @@
                 <!-- Hidden Details Panel -->
                 <div id="details-web" class="hidden border-t border-slate-700/50 pt-6 mt-2">
                     <p class="text-slate-300 text-sm mb-6 leading-relaxed"><strong>Main responsibility:</strong> Implement the web app from plans: RSC/client strategy, data fetching, routes, and Atomic Design components; then update task/epic and tracking.</p>
+                    <p class="text-slate-400 text-sm mb-6 bg-slate-900/80 p-3 rounded-lg border border-slate-700/80"><strong class="text-slate-300">Scope rule:</strong> Run <code class="text-xs font-mono text-brand-400">[WEB]</code> only when delivery targets <code class="text-xs font-mono text-slate-400">web/</code>. For mobile-only scope, use Phase 4 <code class="text-xs font-mono text-brand-400">[MOBILE]</code> instead of this phase.</p>
 
                     <div class="grid md:grid-cols-2 gap-6 text-sm">
                         <!-- Left Column -->
@@ -534,11 +536,137 @@
                 </div>
             </div>
 
-            <!-- Slide 7: Automated QA -->
+            <!-- Mobile Phase: MOBILE Agent -->
             <div class="glow-border bg-dark-card p-8 rounded-2xl border border-dark-border flex flex-col gap-6 transition-all">
                 <div class="flex flex-col md:flex-row gap-8 items-start">
                     <div class="md:w-1/3">
                         <div class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-2">Phase 4</div>
+                        <h3 class="text-2xl font-bold text-white mb-1">Mobile Implementation</h3>
+                        <p class="text-xs text-slate-500 mt-1 leading-relaxed">Mobile track—use when delivery is Mobile Application using React Native.</p>
+                        <button onclick="toggleDetails('details-mobile', 'icon-mobile', this)" class="tag-btn flex items-center gap-2 px-3 py-1.5 rounded-md font-mono text-sm shadow-sm cursor-pointer mt-2">
+                            [MOBILE]
+                            <svg id="icon-mobile" class="w-4 h-4 transition-transform duration-300 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+                        </button>
+
+                        <div class="mt-8 relative group inline-block w-full">
+                            <span class="text-xs text-slate-500 mb-3 block font-medium uppercase tracking-wider">Phase Workflow</span>
+                            <img src="mobile-phase.png" alt="Mobile Phase" class="w-full rounded-lg border border-slate-700 cursor-zoom-in hover:border-brand-500 transition-all shadow-md">
+
+                            <div class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 pointer-events-none">
+                                <img src="mobile-phase.png" alt="Mobile Phase Expanded" class="w-[70vw] max-h-[85vh] object-contain rounded-xl shadow-[0_0_50px_rgba(0,0,0,0.5)] border border-slate-700 transform scale-95 group-hover:scale-100 transition-transform duration-300">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="md:w-2/3 space-y-4">
+                        <p class="text-slate-300"><strong>Persona:</strong> Lead Mobile Engineer (<code class="text-sm text-brand-cyan">mobile.mdc</code>)</p>
+                        <div class="rounded-lg border border-cyan-500/25 bg-cyan-950/20 px-3 py-2.5 text-xs text-cyan-100/90 leading-relaxed">
+                            <strong class="text-cyan-300">Not part of every run:</strong> This phase is a <em>parallel branch</em> to Phase 3. If you are implementing web only, do not invoke <code class="font-mono text-cyan-200/90">[MOBILE]</code>.
+                        </div>
+                        <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800 text-sm">
+                            <span class="text-slate-500 block mb-2">Input: The Approved Plan + Internal Skills Library</span>
+                            <p class="text-[10px] uppercase tracking-wider text-slate-500 mb-2 mt-3">Shared with web</p>
+                            <div class="space-y-2.5">
+                                <div class="border-l-2 border-brand-500 pl-3">
+                                    <strong class="text-white block font-mono text-xs">api-call.md</strong>
+                                    <span class="text-slate-400">API clients, TanStack Query hooks, and error handling patterns for mobile.</span>
+                                </div>
+                                <div class="border-l-2 border-brand-cyan pl-3">
+                                    <strong class="text-white block font-mono text-xs">state-management.md</strong>
+                                    <span class="text-slate-400">Server vs client state (TanStack Query + Zustand/MMKV) per project rules.</span>
+                                </div>
+                            </div>
+                            <p class="text-[10px] uppercase tracking-wider text-slate-500 mb-2 mt-4">Mobile-only</p>
+                            <div class="space-y-2.5">
+                                <div class="border-l-2 border-emerald-500/80 pl-3">
+                                    <strong class="text-white block font-mono text-xs">figma-to-mobile/SKILL.md</strong>
+                                    <span class="text-slate-400">Figma fetch, screen mapping table, layout types, assets under <code class="text-[10px] font-mono text-slate-500">mobile/assets/</code>.</span>
+                                </div>
+                                <div class="border-l-2 border-emerald-400/50 pl-3">
+                                    <strong class="text-white block font-mono text-xs">react-native-best-practices/SKILL.md</strong>
+                                    <span class="text-slate-400">React Native / Expo conventions, performance and platform behavior.</span>
+                                </div>
+                                <div class="border-l-2 border-teal-500/60 pl-3">
+                                    <strong class="text-white block font-mono text-xs">upgrading-react-native/SKILL.md</strong>
+                                    <span class="text-slate-400">Safe RN/Expo version upgrades and migration notes.</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="grid sm:grid-cols-2 gap-4 text-sm">
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                <span class="text-slate-500 block mb-1">Input</span>
+                                <span class="text-slate-200">Ticket ID, Jira &amp; Figma MCP, architecture plan (Epic ID)</span>
+                            </div>
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                <span class="text-slate-500 block mb-1">Loop</span>
+                                <span class="text-slate-200">Developer approves plan or sends feedback; agent regenerates until approved.</span>
+                            </div>
+                        </div>
+                        <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800 text-sm">
+                            <span class="text-slate-500 block mb-2">After approval</span>
+                            <ul class="list-disc list-inside text-slate-300 space-y-1">
+                                <li><strong class="text-white">Implementation:</strong> TypeScript, screens, and native UI under <code class="text-xs font-mono text-slate-400">mobile/src/</code>, following skills above.</li>
+                                <li><strong class="text-white">Verification:</strong> Run <code class="text-xs font-mono text-brand-400">[VERIFY_CODE]</code> same ticket ID; updates the plan verification section.</li>
+                            </ul>
+                        </div>
+                        <p class="text-sm text-green-400 bg-green-400/10 px-3 py-2 rounded inline-block border border-green-400/20">
+                            <strong>Output:</strong> Plan-bound React Native (or project stack) code with tracked verification.
+                        </p>
+                    </div>
+                </div>
+
+                <div id="details-mobile" class="hidden border-t border-slate-700/50 pt-6 mt-2">
+                    <p class="text-slate-300 text-sm mb-6 leading-relaxed"><strong>Main responsibility:</strong> Produce and execute mobile plans from Jira, Figma, and the epic architecture doc; load the skills below during discovery; implement under <code class="text-xs font-mono text-brand-400">mobile/src/</code>; then run <code class="text-xs font-mono text-brand-400">[VERIFY_CODE]</code> for the same ticket.</p>
+                    <p class="text-slate-400 text-sm mb-6 bg-slate-900/80 p-3 rounded-lg border border-slate-700/80"><strong class="text-slate-300">Scope rule:</strong> Run <code class="text-xs font-mono text-brand-400">[MOBILE]</code> only when delivery targets <code class="text-xs font-mono text-slate-400">mobile/</code>. For web-only scope, use Phase 3 <code class="text-xs font-mono text-brand-400">[WEB]</code> and skip this phase.</p>
+
+                    <div class="grid md:grid-cols-2 gap-6 text-sm">
+                        <div class="space-y-6">
+                            <div>
+                                <h4 class="text-brand-cyan font-semibold mb-3 text-xs uppercase tracking-wider">Key Phases</h4>
+                                <ul class="space-y-3 text-slate-400">
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">1.</span> <span>Discovery: Jira/Figma MCP, <code class="text-xs font-mono text-slate-300 bg-slate-800 px-1 py-0.5 rounded">mobile/package.json</code>, and skills (see right column)</span></li>
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">2.</span> <span>Plan artifact <code class="text-xs font-mono text-slate-300 bg-slate-800 px-1 py-0.5 rounded">docs/plans/mobile/[TICKET_ID].md</code> (Figma mapping per <code class="text-xs font-mono text-slate-300 bg-slate-800 px-1 py-0.5 rounded">figma-to-mobile</code>)</span></li>
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">3.</span> <span>User approval (or revise with MOBILE Agent)</span></li>
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">4.</span> <span>Execution: types → state → navigation → UI (per <code class="text-xs font-mono text-slate-300 bg-slate-800 px-1 py-0.5 rounded">mobile.mdc</code>)</span></li>
+                                    <li class="flex gap-2"><span class="text-brand-400 font-bold">5.</span> <span>Epic checklist + <code class="text-xs font-mono text-slate-300 bg-slate-800 px-1 py-0.5 rounded">docs/tracking/MOBILE_TRACKING.md</code> + <code class="text-xs font-mono text-slate-300 bg-slate-800 px-1 py-0.5 rounded">[VERIFY_CODE]</code></span></li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Skills (discovery)</span>
+                                <ul class="text-slate-300 text-xs font-mono space-y-1.5 list-none mt-2">
+                                    <li><span class="text-slate-500">Shared:</span> <code class="text-brand-400">.cursor/skills/api-call.md</code></li>
+                                    <li><span class="text-slate-500">Shared:</span> <code class="text-brand-400">.cursor/skills/state-management.md</code></li>
+                                    <li><span class="text-slate-500">Mobile:</span> <code class="text-brand-400">.cursor/skills/figma-to-mobile/SKILL.md</code></li>
+                                    <li><span class="text-slate-500">Mobile:</span> <code class="text-brand-400">.cursor/skills/react-native-best-practices/SKILL.md</code></li>
+                                    <li><span class="text-slate-500">Mobile:</span> <code class="text-brand-400">.cursor/skills/upgrading-react-native/SKILL.md</code></li>
+                                </ul>
+                            </div>
+                            <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Output</span>
+                                <span class="text-slate-300">Approved plan, code under <code class="text-xs font-mono text-brand-400">mobile/src/</code>, assets in <code class="text-xs font-mono text-brand-400">mobile/assets/</code>, parent epic checklist, <code class="text-xs font-mono text-brand-400">docs/tracking/MOBILE_TRACKING.md</code>, plan verification section from <code class="text-xs font-mono text-brand-400">verify-code.mdc</code>.</span>
+                            </div>
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                    <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Dependencies</span>
+                                    <span class="text-slate-300">Jira &amp; Figma MCP, skills listed above, <code class="text-xs font-mono text-brand-400">atomic-design-system.mdc</code>, <code class="text-xs font-mono text-brand-400">mobile-conventions.mdc</code>.</span>
+                                </div>
+                                <div class="bg-slate-900/50 p-4 rounded-lg border border-slate-800">
+                                    <span class="text-slate-500 block mb-1 text-xs uppercase tracking-wider font-semibold">Consumers</span>
+                                    <span class="text-slate-300"><code class="text-xs font-mono text-brand-400">[VERIFY_CODE]</code>; release and QA.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 7: Automated QA -->
+            <div class="glow-border bg-dark-card p-8 rounded-2xl border border-dark-border flex flex-col gap-6 transition-all">
+                <div class="flex flex-col md:flex-row gap-8 items-start">
+                    <div class="md:w-1/3">
+                        <div class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-2">Phase 5</div>
                         <h3 class="text-2xl font-bold text-white mb-1">Code Verifier</h3>
                         <button onclick="toggleDetails('details-review', 'icon-review', this)" class="tag-btn flex items-center gap-2 px-3 py-1.5 rounded-md font-mono text-sm shadow-sm cursor-pointer mt-2">
                             [VERIFY_CODE]
@@ -616,7 +744,7 @@
             <div class="glow-border bg-dark-card p-8 rounded-2xl border border-dark-border flex flex-col gap-6 transition-all">
                 <div class="flex flex-col md:flex-row gap-8 items-start">
                     <div class="md:w-1/3">
-                        <div class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-2">Phase 5</div>
+                        <div class="text-xs font-bold tracking-widest text-brand-400 uppercase mb-2">Phase 6</div>
                         <h3 class="text-2xl font-bold text-white mb-1">Security Hardening</h3>
                         <button onclick="toggleDetails('details-security', 'icon-security', this)" class="tag-btn flex items-center gap-2 px-3 py-1.5 rounded-md font-mono text-sm shadow-sm cursor-pointer mt-2">
                             [SECURITY]
@@ -739,7 +867,7 @@
                         Dev->>Plan: Reviews & Approves Architecture
                         end
                         
-                        Dev->>Agents: Trigger [WEB]
+                        Dev->>Agents: Trigger [WEB] and/or [MOBILE]
                         Agents->>Plan: Write Code & Add "Review Notes"
                         Dev->>Agents: Trigger [VERIFY_CODE] & [SECURITY]
                         Agents-->>Dev: Line-by-Line Audit Report
@@ -760,7 +888,7 @@
                 <ol class="space-y-6 relative border-l border-slate-700 ml-3">
                     <li class="pl-6 relative">
                         <div class="absolute w-3 h-3 bg-brand-500 rounded-full -left-[6.5px] top-1.5 shadow-[0_0_10px_#6366f1]"></div>
-                        <p class="text-slate-300">The Builder (<code>[WEB]</code>) identifies high-risk areas during coding.</p>
+                        <p class="text-slate-300">The Builder (<code>[WEB]</code> or <code>[MOBILE]</code>) identifies high-risk areas during coding.</p>
                     </li>
                     <li class="pl-6 relative">
                         <div class="absolute w-3 h-3 bg-brand-cyan rounded-full -left-[6.5px] top-1.5 shadow-[0_0_10px_#22d3ee]"></div>
@@ -786,7 +914,7 @@
                     <p class="text-slate-500">... previous architectural notes ...</p>
                     <br>
                     <p class="text-brand-400 font-bold">## Section 5. Review (`[VERIFY_CODE]`)</p>
-                    <p class="text-slate-400">Notes from [WEB] agent to Reviewer:</p>
+                    <p class="text-slate-400">Notes from [WEB] / [MOBILE] agent to Reviewer:</p>
                     <br>
                     <p>- <span class="text-red-400">CRITICAL:</span> Check `src/app/api/auth/route.ts` line 42 for session handling logic.</p>
                     <p>- Ensure Zustand global state correctly wipes `userToken` on logout according to `state-management.md`.</p>
